@@ -1,0 +1,173 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  category: string;
+  date: string;
+  image: string;
+  imageAlt?: string;
+}
+
+const { title, category, date, image, imageAlt } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={title} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{title} — Moonshot Forge</title>
+  </head>
+  <body class="bg-forge-black text-forge-white font-mono font-light">
+    <!-- Nav -->
+    <nav class="fixed top-0 left-0 right-0 z-[200] bg-[rgba(8,8,8,0.92)] backdrop-blur-[16px] border-b border-subtle">
+      <div class="flex items-center justify-between px-5 sm:px-8 lg:px-[60px] h-16">
+        <a href="/" class="font-syne font-bold text-[18px] tracking-[-0.02em] text-forge-white no-underline">
+          Moonshot Forge
+        </a>
+        <a href="/#blog" class="text-[10px] tracking-wider3 uppercase text-forge-cream hover:text-forge-accent transition-colors duration-200 no-underline">
+          ← Back to Blog
+        </a>
+      </div>
+    </nav>
+
+    <main class="pt-16">
+      <!-- Hero image -->
+      <div class="w-full max-w-[960px] mx-auto px-5 sm:px-8 pt-12 sm:pt-16">
+        <div class="relative aspect-[16/9] overflow-hidden border border-subtle">
+          <img src={image} alt={imageAlt || title} class="w-full h-full object-cover" />
+          <div class="absolute inset-0 bg-gradient-to-t from-forge-black/40 to-transparent"></div>
+        </div>
+      </div>
+
+      <!-- Article header -->
+      <div class="w-full max-w-[720px] mx-auto px-5 sm:px-8 pt-10 sm:pt-14">
+        <div class="flex gap-3 items-center mb-6 flex-wrap">
+          <span class="text-[9px] tracking-wider3 uppercase text-forge-accent
+                       border border-[rgba(232,213,163,0.25)] px-2.5 py-1">
+            {category}
+          </span>
+          <span class="text-[10px] text-[rgba(200,195,184,0.4)] tracking-[0.1em]">{date}</span>
+        </div>
+        <h1 class="font-syne font-bold tracking-[-0.02em] leading-[1.1]
+                   text-[28px] sm:text-[36px] lg:text-[44px] mb-10">
+          {title}
+        </h1>
+      </div>
+
+      <!-- Article body -->
+      <article class="blog-content w-full max-w-[720px] mx-auto px-5 sm:px-8 pb-20 sm:pb-28">
+        <slot />
+      </article>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-subtle px-5 sm:px-8 lg:px-[60px] py-10">
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+        <a href="/" class="font-syne font-bold text-[16px] text-forge-white no-underline">Moonshot Forge</a>
+        <span class="text-[10px] tracking-wider2 uppercase text-[rgba(200,195,184,0.3)]">
+          &copy; 2025 Moonshot Forge. All rights reserved.
+        </span>
+      </div>
+    </footer>
+  </body>
+</html>
+
+<style>
+  .blog-content :global(p) {
+    font-size: 15px;
+    line-height: 2;
+    color: #c8c3b8;
+    margin-bottom: 1.5em;
+  }
+
+  .blog-content :global(h2) {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: clamp(22px, 4vw, 28px);
+    color: #f0ede6;
+    margin-top: 2.5em;
+    margin-bottom: 0.75em;
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+  }
+
+  .blog-content :global(h3) {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: clamp(18px, 3vw, 22px);
+    color: #e8d5a3;
+    margin-top: 2em;
+    margin-bottom: 0.6em;
+    letter-spacing: -0.01em;
+  }
+
+  .blog-content :global(strong) {
+    color: #f0ede6;
+    font-weight: 500;
+  }
+
+  .blog-content :global(ul),
+  .blog-content :global(ol) {
+    margin: 1em 0 1.5em 1.25em;
+    color: #c8c3b8;
+  }
+
+  .blog-content :global(li) {
+    font-size: 15px;
+    line-height: 2;
+    margin-bottom: 0.5em;
+  }
+
+  .blog-content :global(blockquote) {
+    border-left: 2px solid #e8d5a3;
+    margin: 1.5em 0;
+    padding: 0.5em 1.5em;
+    color: rgba(200, 195, 184, 0.7);
+    font-style: italic;
+  }
+
+  .blog-content :global(code) {
+    background: #1a1a18;
+    border: 1px solid rgba(240, 237, 230, 0.08);
+    padding: 2px 6px;
+    font-size: 13px;
+    color: #e8d5a3;
+  }
+
+  .blog-content :global(pre) {
+    background: #1a1a18;
+    border: 1px solid rgba(240, 237, 230, 0.08);
+    padding: 1.25em 1.5em;
+    overflow-x: auto;
+    margin: 1.5em 0;
+    font-size: 13px;
+    line-height: 1.7;
+  }
+
+  .blog-content :global(pre code) {
+    background: none;
+    border: none;
+    padding: 0;
+  }
+
+  .blog-content :global(a) {
+    color: #e8d5a3;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    transition: color 0.2s;
+  }
+
+  .blog-content :global(a:hover) {
+    color: #f0ede6;
+  }
+
+  .blog-content :global(hr) {
+    border: none;
+    border-top: 1px solid rgba(240, 237, 230, 0.08);
+    margin: 2.5em 0;
+  }
+</style>

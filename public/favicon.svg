@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <!-- Gold hexagon -->
+  <polygon
+    points="32,2 62,17 62,49 32,62 2,49 2,17"
+    fill="#e8d5a3"
+  />
+</svg>
