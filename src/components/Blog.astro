@@ -1,5 +1,16 @@
 ---
-import { blogs } from '../data';
+import { getCollection } from 'astro:content';
+
+const posts = await getCollection('blog');
+// Sort by date descending (newest first)
+const sortedPosts = posts.sort((a, b) => {
+  const months: Record<string, number> = { Jan: 0, Feb: 1, Mar: 2, Apr: 3, May: 4, Jun: 5, Jul: 6, Aug: 7, Sep: 8, Oct: 9, Nov: 10, Dec: 11 };
+  const [aMonth, aYear] = a.data.date.split(' ');
+  const [bMonth, bYear] = b.data.date.split(' ');
+  const aDate = new Date(parseInt(aYear), months[aMonth] || 0);
+  const bDate = new Date(parseInt(bYear), months[bMonth] || 0);
+  return bDate.getTime() - aDate.getTime();
+});
 ---
 
 <section id="blog" class="relative z-[1] bg-forge-dim2 px-5 py-20 sm:px-8 sm:py-24 lg:px-[60px] lg:py-[120px]">
@@ -10,45 +21,41 @@ import { blogs } from '../data';
   </h2>
 
   <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[2px]">
-    {blogs.map((b, i) => (
-      <button
+    {sortedPosts.map((post, i) => (
+      <a
+        href={`/blog/${post.slug}`}
         class="blog-card bg-forge-black border border-subtle overflow-hidden text-left
                cursor-pointer transition-all duration-300 hover:border-[rgba(232,213,163,0.2)]
-               fade-up w-full"
+               fade-up block no-underline text-forge-white"
         style={`transition-delay: ${i * 0.1}s`}
-        data-blog={i}
-        aria-label={`Read: ${b.title}`}
       >
-        <!-- Image placeholder -->
-        <div class="relative aspect-[16/9] bg-gradient-to-br from-[#1a1a18] to-[#111]
-                    flex items-center justify-center overflow-hidden">
-          <span class="font-syne font-extrabold text-[rgba(232,213,163,0.06)] tracking-[-0.04em] uppercase
-                       text-[48px] sm:text-[56px] lg:text-[64px] select-none">
-            {b.imgText}
-          </span>
-          <div class="absolute bottom-0 left-0 right-0 h-[2px] bg-forge-accent opacity-35"></div>
+        <!-- Blog image -->
+        <div class="relative aspect-[16/9] overflow-hidden">
+          <img src={post.data.image} alt={post.data.imageAlt || post.data.title}
+               class="w-full h-full object-cover" />
+          <div class="absolute inset-0 bg-gradient-to-t from-forge-black/60 to-transparent"></div>
         </div>
         <!-- Content -->
         <div class="p-6 sm:p-7">
           <div class="flex gap-2.5 items-center mb-3 flex-wrap">
             <span class="text-[9px] tracking-wider3 uppercase text-forge-accent
                          border border-[rgba(232,213,163,0.25)] px-2 py-1">
-              {b.cat}
+              {post.data.category}
             </span>
-            <span class="text-[10px] text-[rgba(200,195,184,0.35)] tracking-[0.1em]">{b.date}</span>
+            <span class="text-[10px] text-[rgba(200,195,184,0.35)] tracking-[0.1em]">{post.data.date}</span>
           </div>
           <div class="font-syne font-bold text-[17px] leading-[1.25] mb-2.5 tracking-[-0.01em]">
-            {b.title}
+            {post.data.title}
           </div>
           <p class="text-[11px] leading-[1.75] text-[rgba(200,195,184,0.5)] mb-4">
-            {b.excerpt}
+            {post.data.excerpt}
           </p>
           <span class="blog-arrow flex items-center gap-1.5 text-[10px] tracking-[0.16em] uppercase
                        text-forge-accent transition-all duration-200">
             Read article →
           </span>
         </div>
-      </button>
+      </a>
     ))}
   </div>
 </section>

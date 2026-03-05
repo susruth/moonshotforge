@@ -1,0 +1,182 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="800" height="450">
+  <defs>
+    <!-- Film grain pattern -->
+    <pattern id="grain1" x="0" y="0" width="4" height="4" patternUnits="userSpaceOnUse">
+      <circle cx="1" cy="1" r="0.4" fill="#e8d5a3" opacity="0.08"/>
+      <circle cx="3" cy="3" r="0.3" fill="#080808" opacity="0.06"/>
+      <circle cx="2" cy="0" r="0.2" fill="#c8c3b8" opacity="0.05"/>
+    </pattern>
+    <pattern id="grain1b" x="0" y="0" width="7" height="7" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="5" r="0.5" fill="#080808" opacity="0.04"/>
+      <circle cx="6" cy="2" r="0.3" fill="#e8d5a3" opacity="0.06"/>
+      <circle cx="4" cy="6" r="0.4" fill="#080808" opacity="0.03"/>
+    </pattern>
+    <!-- Vignette gradient -->
+    <radialGradient id="vignette1" cx="50%" cy="50%" r="60%">
+      <stop offset="0%" stop-color="#080808" stop-opacity="0"/>
+      <stop offset="70%" stop-color="#080808" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#080808" stop-opacity="0.55"/>
+    </radialGradient>
+    <!-- Warm photo overlay -->
+    <linearGradient id="warmth1" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#c4601a" stop-opacity="0.08"/>
+      <stop offset="50%" stop-color="#e8d5a3" stop-opacity="0.05"/>
+      <stop offset="100%" stop-color="#c4601a" stop-opacity="0.1"/>
+    </linearGradient>
+    <!-- Circuit glow -->
+    <filter id="glow1">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Polaroid-style frame with rounded corners -->
+  <rect x="0" y="0" width="800" height="450" rx="12" ry="12" fill="#1a1a18"/>
+
+  <!-- Photo area (slightly inset like a polaroid) -->
+  <rect x="16" y="16" width="768" height="418" rx="6" ry="6" fill="#0d0d0b"/>
+
+  <!-- Background gradient - dark with warm undertones -->
+  <rect x="16" y="16" width="768" height="418" rx="6" ry="6" fill="#0f0e0c"/>
+  <rect x="16" y="16" width="768" height="418" rx="6" ry="6" fill="url(#warmth1)"/>
+
+  <!-- Circuit board traces - horizontal lines -->
+  <g opacity="0.2" stroke="#e8d5a3" stroke-width="1" fill="none">
+    <line x1="50" y1="120" x2="200" y2="120"/>
+    <line x1="200" y1="120" x2="220" y2="140"/>
+    <line x1="220" y1="140" x2="350" y2="140"/>
+    <line x1="600" y1="100" x2="720" y2="100"/>
+    <line x1="580" y1="100" x2="600" y2="100"/>
+    <line x1="50" y1="320" x2="150" y2="320"/>
+    <line x1="150" y1="320" x2="170" y2="300"/>
+    <line x1="170" y1="300" x2="280" y2="300"/>
+    <line x1="550" y1="350" x2="700" y2="350"/>
+    <line x1="700" y1="350" x2="720" y2="330"/>
+    <line x1="720" y1="330" x2="760" y2="330"/>
+    <line x1="80" y1="200" x2="120" y2="200"/>
+    <line x1="120" y1="200" x2="140" y2="180"/>
+    <line x1="650" y1="200" x2="750" y2="200"/>
+  </g>
+
+  <!-- Circuit board traces - vertical lines -->
+  <g opacity="0.15" stroke="#c8c3b8" stroke-width="0.8" fill="none">
+    <line x1="200" y1="50" x2="200" y2="120"/>
+    <line x1="600" y1="50" x2="600" y2="100"/>
+    <line x1="150" y1="320" x2="150" y2="400"/>
+    <line x1="700" y1="250" x2="700" y2="350"/>
+    <line x1="350" y1="140" x2="350" y2="180"/>
+  </g>
+
+  <!-- Circuit nodes/solder points -->
+  <g fill="#e8d5a3" opacity="0.35">
+    <circle cx="200" cy="120" r="3"/>
+    <circle cx="350" cy="140" r="3"/>
+    <circle cx="600" cy="100" r="3"/>
+    <circle cx="150" cy="320" r="3"/>
+    <circle cx="700" cy="350" r="3"/>
+    <circle cx="280" cy="300" r="2.5"/>
+    <circle cx="120" cy="200" r="2.5"/>
+  </g>
+
+  <!-- Central ZK proof visualization - concentric rings -->
+  <g transform="translate(400, 225)" filter="url(#glow1)">
+    <!-- Outer ring -->
+    <circle cx="0" cy="0" r="110" fill="none" stroke="#e8d5a3" stroke-width="1" opacity="0.2" stroke-dasharray="8 4"/>
+    <!-- Middle ring -->
+    <circle cx="0" cy="0" r="80" fill="none" stroke="#e8d5a3" stroke-width="1.5" opacity="0.3" stroke-dasharray="5 3"/>
+    <!-- Inner ring -->
+    <circle cx="0" cy="0" r="50" fill="none" stroke="#c4601a" stroke-width="2" opacity="0.5" stroke-dasharray="3 2"/>
+    <!-- Core -->
+    <circle cx="0" cy="0" r="20" fill="#c4601a" opacity="0.15"/>
+    <circle cx="0" cy="0" r="20" fill="none" stroke="#e8d5a3" stroke-width="1.5" opacity="0.6"/>
+
+    <!-- Zero-knowledge "proof" lines connecting rings -->
+    <line x1="0" y1="-20" x2="0" y2="-50" stroke="#e8d5a3" stroke-width="1" opacity="0.4"/>
+    <line x1="17" y1="-10" x2="43" y2="-25" stroke="#e8d5a3" stroke-width="1" opacity="0.4"/>
+    <line x1="17" y1="10" x2="43" y2="25" stroke="#e8d5a3" stroke-width="1" opacity="0.4"/>
+    <line x1="0" y1="20" x2="0" y2="50" stroke="#e8d5a3" stroke-width="1" opacity="0.4"/>
+    <line x1="-17" y1="10" x2="-43" y2="25" stroke="#e8d5a3" stroke-width="1" opacity="0.4"/>
+    <line x1="-17" y1="-10" x2="-43" y2="-25" stroke="#e8d5a3" stroke-width="1" opacity="0.4"/>
+
+    <!-- Proof verification dots on outer ring -->
+    <circle cx="0" cy="-80" r="4" fill="#c4601a" opacity="0.7"/>
+    <circle cx="69" cy="-40" r="4" fill="#e8d5a3" opacity="0.5"/>
+    <circle cx="69" cy="40" r="4" fill="#c4601a" opacity="0.7"/>
+    <circle cx="0" cy="80" r="4" fill="#e8d5a3" opacity="0.5"/>
+    <circle cx="-69" cy="40" r="4" fill="#c4601a" opacity="0.7"/>
+    <circle cx="-69" cy="-40" r="4" fill="#e8d5a3" opacity="0.5"/>
+
+    <!-- Mathematical symbols scattered around -->
+    <text x="-95" y="-75" fill="#e8d5a3" opacity="0.3" font-family="Georgia, serif" font-size="14" font-style="italic">P(x)</text>
+    <text x="70" y="-70" fill="#c8c3b8" opacity="0.25" font-family="Georgia, serif" font-size="12" font-style="italic">V(r)</text>
+    <text x="85" y="85" fill="#e8d5a3" opacity="0.3" font-family="Georgia, serif" font-size="13" font-style="italic">H(s)</text>
+    <text x="-110" y="80" fill="#c8c3b8" opacity="0.25" font-family="Georgia, serif" font-size="11" font-style="italic">F(p,q)</text>
+
+    <!-- ZK lock symbol in center -->
+    <rect x="-8" y="-4" width="16" height="12" rx="2" fill="none" stroke="#e8d5a3" stroke-width="1.5" opacity="0.7"/>
+    <path d="M-4,-4 L-4,-9 A4,4 0 0,1 4,-9 L4,-4" fill="none" stroke="#e8d5a3" stroke-width="1.5" opacity="0.7"/>
+    <circle cx="0" cy="2" r="2" fill="#c4601a" opacity="0.8"/>
+  </g>
+
+  <!-- Binary/hex data streams on sides -->
+  <g fill="#e8d5a3" opacity="0.12" font-family="'Courier New', monospace" font-size="9">
+    <text x="40" y="60">01101001 11010010</text>
+    <text x="40" y="75">10110100 01001011</text>
+    <text x="40" y="90">0xAF3B 0x92C1</text>
+    <text x="620" y="380">11001010 10110001</text>
+    <text x="620" y="395">0xE8D5 0xA300</text>
+    <text x="620" y="410">01010110 11100011</text>
+  </g>
+
+  <!-- Sigma protocol arrows -->
+  <g opacity="0.2" stroke="#c4601a" stroke-width="1.2" fill="none">
+    <path d="M180,160 Q250,140 300,180" marker-end="none"/>
+    <path d="M500,160 Q550,140 620,170" marker-end="none"/>
+    <path d="M180,290 Q250,310 300,270" marker-end="none"/>
+    <path d="M500,290 Q550,310 620,280" marker-end="none"/>
+  </g>
+
+  <!-- Greek/math symbols scattered -->
+  <g fill="#c8c3b8" opacity="0.18" font-family="Georgia, serif" font-style="italic">
+    <text x="100" y="155" font-size="18">&Sigma;</text>
+    <text x="680" y="155" font-size="16">&pi;</text>
+    <text x="90" y="280" font-size="15">&lambda;</text>
+    <text x="690" y="290" font-size="17">&delta;</text>
+    <text x="300" y="70" font-size="14">&forall;</text>
+    <text x="500" y="400" font-size="14">&exist;</text>
+  </g>
+
+  <!-- Film grain overlays -->
+  <rect x="16" y="16" width="768" height="418" rx="6" ry="6" fill="url(#grain1)"/>
+  <rect x="16" y="16" width="768" height="418" rx="6" ry="6" fill="url(#grain1b)"/>
+
+  <!-- Vignette effect -->
+  <rect x="16" y="16" width="768" height="418" rx="6" ry="6" fill="url(#vignette1)"/>
+
+  <!-- Film border scratches -->
+  <line x1="16" y1="30" x2="16" y2="60" stroke="#e8d5a3" stroke-width="0.5" opacity="0.15"/>
+  <line x1="784" y1="380" x2="784" y2="420" stroke="#e8d5a3" stroke-width="0.5" opacity="0.12"/>
+
+  <!-- Retro date stamp -->
+  <g transform="translate(650, 400)">
+    <text fill="#c4601a" opacity="0.5" font-family="'Courier New', monospace" font-size="11" font-weight="bold">26  03  05</text>
+  </g>
+
+  <!-- Film frame number -->
+  <g transform="translate(40, 42)">
+    <text fill="#e8d5a3" opacity="0.25" font-family="'Courier New', monospace" font-size="10">No. 01</text>
+  </g>
+
+  <!-- Subtle top film strip holes -->
+  <g opacity="0.08" fill="#e8d5a3">
+    <rect x="80" y="18" width="12" height="8" rx="1"/>
+    <rect x="110" y="18" width="12" height="8" rx="1"/>
+    <rect x="140" y="18" width="12" height="8" rx="1"/>
+    <rect x="650" y="18" width="12" height="8" rx="1"/>
+    <rect x="680" y="18" width="12" height="8" rx="1"/>
+    <rect x="710" y="18" width="12" height="8" rx="1"/>
+  </g>
+</svg>

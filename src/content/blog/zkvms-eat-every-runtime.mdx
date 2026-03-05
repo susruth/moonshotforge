@@ -1,0 +1,38 @@
+---
+title: "Why zkVMs Will Eat Every Blockchain Runtime"
+category: "Research"
+date: "Mar 2025"
+excerpt: "The transition from EVM to zkVM is not incremental — it is a regime change. Here's why we believe every major chain will migrate within five years."
+image: "/blog/zk-runtime.svg"
+imageAlt: "Abstract visualization of zero-knowledge proof circuits"
+---
+
+The transition from EVM to zkVM is not incremental — it is a regime change. Here's why we believe every major chain will migrate within five years, and what it means for developers building today.
+
+## The EVM's Original Sin
+
+The Ethereum Virtual Machine was designed for correctness and determinism, not for provability. Every opcode was chosen without considering whether a ZK proof could be generated over it efficiently. KECCAK256 is one of the most expensive operations to prove in a circuit — yet it's used everywhere in Ethereum's state trie.
+
+zkVMs solve this by either redesigning the instruction set or by building massively parallelized proving infrastructure that can handle the EVM's idiosyncrasies at scale. Both approaches are valid; the winner will be determined by developer adoption, not technical elegance.
+
+## Why This Time Is Different
+
+Previous generations of ZK technology required hand-writing circuits for every computation — a process that took months per application. Modern zkVMs like SP1, RISC Zero, and Jolt allow any program compiled to RISC-V or WASM to be proven automatically. The proving overhead has fallen from 10,000× to under 100× in three years, and it's still falling.
+
+At Moonshot Forge, we've deployed capital into three zkVM projects in the last 18 months. Our bet: by 2027, every new L1 and major L2 will be ZK-native.
+
+## What This Means For Builders
+
+If you're building a new protocol today, you have a choice: build on the EVM and accept the proving overhead, or build ZK-native and accept the smaller ecosystem. We believe the calculus is shifting rapidly toward ZK-native.
+
+The tooling gap is closing fast. Solidity developers can already deploy to zkVMs with minimal changes. Within two years, the developer experience will be indistinguishable — but the performance and privacy guarantees will be dramatically better.
+
+## Our Portfolio Thesis
+
+We're actively investing in three layers of the zkVM stack:
+
+- **Proving infrastructure**: The hardware and software that generates proofs efficiently
+- **Developer tooling**: Compilers, debuggers, and testing frameworks for ZK-native development
+- **Application layer**: Protocols that leverage ZK properties for features impossible on traditional VMs
+
+NullGate, our portfolio company, is building at the intersection of all three — a full-stack zkVM with privacy-preserving smart contracts and EVM compatibility at the opcode level.

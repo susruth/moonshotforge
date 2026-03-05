@@ -1,0 +1,246 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="800" height="450">
+  <defs>
+    <!-- Film grain -->
+    <pattern id="grain3" x="0" y="0" width="5" height="5" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="1" r="0.35" fill="#e8d5a3" opacity="0.07"/>
+      <circle cx="4" cy="3" r="0.3" fill="#080808" opacity="0.06"/>
+      <circle cx="1" cy="4" r="0.4" fill="#c8c3b8" opacity="0.05"/>
+    </pattern>
+    <pattern id="grain3b" x="0" y="0" width="8" height="8" patternUnits="userSpaceOnUse">
+      <circle cx="3" cy="6" r="0.4" fill="#080808" opacity="0.04"/>
+      <circle cx="7" cy="2" r="0.3" fill="#e8d5a3" opacity="0.05"/>
+      <circle cx="1" cy="1" r="0.35" fill="#080808" opacity="0.03"/>
+      <circle cx="6" cy="7" r="0.25" fill="#c8c3b8" opacity="0.04"/>
+    </pattern>
+    <!-- Vignette -->
+    <radialGradient id="vignette3" cx="50%" cy="50%" r="60%">
+      <stop offset="0%" stop-color="#080808" stop-opacity="0"/>
+      <stop offset="68%" stop-color="#080808" stop-opacity="0.14"/>
+      <stop offset="100%" stop-color="#080808" stop-opacity="0.55"/>
+    </radialGradient>
+    <!-- Warm overlay -->
+    <linearGradient id="warmth3" x1="0.2" y1="0" x2="0.8" y2="1">
+      <stop offset="0%" stop-color="#c4601a" stop-opacity="0.07"/>
+      <stop offset="40%" stop-color="#e8d5a3" stop-opacity="0.04"/>
+      <stop offset="100%" stop-color="#c4601a" stop-opacity="0.09"/>
+    </linearGradient>
+    <!-- Gold shimmer -->
+    <linearGradient id="goldshimmer" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#e8d5a3" stop-opacity="0.3"/>
+      <stop offset="50%" stop-color="#c4601a" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#e8d5a3" stop-opacity="0.25"/>
+    </linearGradient>
+    <filter id="glow3">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <!-- Digitization effect -->
+    <pattern id="pixelgrid" x="0" y="0" width="8" height="8" patternUnits="userSpaceOnUse">
+      <rect x="0" y="0" width="8" height="8" fill="none" stroke="#e8d5a3" stroke-width="0.2" opacity="0.08"/>
+    </pattern>
+  </defs>
+
+  <!-- Polaroid frame -->
+  <rect x="0" y="0" width="800" height="450" rx="12" ry="12" fill="#1a1a18"/>
+
+  <!-- Photo area -->
+  <rect x="16" y="16" width="768" height="418" rx="6" ry="6" fill="#0e0d0b"/>
+  <rect x="16" y="16" width="768" height="418" rx="6" ry="6" fill="url(#warmth3)"/>
+
+  <!-- Background cityscape silhouette - buildings representing real-world assets -->
+  <g opacity="0.12" fill="#c8c3b8">
+    <!-- Building 1 - tall skyscraper -->
+    <rect x="80" y="180" width="40" height="254" rx="1"/>
+    <rect x="85" y="170" width="30" height="10"/>
+    <!-- Building 2 -->
+    <rect x="130" y="220" width="50" height="214"/>
+    <!-- Building 3 - wide -->
+    <rect x="190" y="250" width="60" height="184"/>
+    <!-- Building 4 - tallest -->
+    <rect x="260" y="150" width="35" height="284" rx="1"/>
+    <polygon points="265,150 277,130 290,150"/>
+    <!-- Building 5 -->
+    <rect x="305" y="230" width="45" height="204"/>
+    <!-- Gap for center -->
+    <!-- Building 6 -->
+    <rect x="480" y="240" width="55" height="194"/>
+    <!-- Building 7 -->
+    <rect x="545" y="200" width="40" height="234"/>
+    <!-- Building 8 - distinctive top -->
+    <rect x="595" y="180" width="45" height="254"/>
+    <polygon points="600,180 617,155 635,180"/>
+    <!-- Building 9 -->
+    <rect x="650" y="260" width="50" height="174"/>
+    <!-- Building 10 -->
+    <rect x="710" y="220" width="45" height="214"/>
+  </g>
+
+  <!-- Building windows (dots of light) -->
+  <g fill="#e8d5a3" opacity="0.08">
+    <!-- Building 1 windows -->
+    <rect x="88" y="195" width="3" height="3"/><rect x="95" y="195" width="3" height="3"/><rect x="102" y="195" width="3" height="3"/>
+    <rect x="88" y="215" width="3" height="3"/><rect x="95" y="215" width="3" height="3"/><rect x="102" y="215" width="3" height="3"/>
+    <rect x="88" y="235" width="3" height="3"/><rect x="102" y="235" width="3" height="3"/>
+    <!-- Building 4 windows -->
+    <rect x="268" y="165" width="3" height="3"/><rect x="278" y="165" width="3" height="3"/>
+    <rect x="268" y="185" width="3" height="3"/><rect x="278" y="185" width="3" height="3"/>
+    <rect x="268" y="205" width="3" height="3"/><rect x="278" y="205" width="3" height="3"/>
+    <!-- Building 8 windows -->
+    <rect x="605" y="195" width="3" height="3"/><rect x="615" y="195" width="3" height="3"/><rect x="625" y="195" width="3" height="3"/>
+    <rect x="605" y="215" width="3" height="3"/><rect x="615" y="215" width="3" height="3"/><rect x="625" y="215" width="3" height="3"/>
+  </g>
+
+  <!-- Central tokenization visualization -->
+  <g transform="translate(400, 200)" filter="url(#glow3)">
+    <!-- Token ring -->
+    <circle cx="0" cy="0" r="85" fill="none" stroke="#e8d5a3" stroke-width="1" opacity="0.2" stroke-dasharray="6 4"/>
+    <circle cx="0" cy="0" r="60" fill="none" stroke="#c4601a" stroke-width="1.5" opacity="0.3"/>
+
+    <!-- Inner token symbol -->
+    <circle cx="0" cy="0" r="30" fill="#c4601a" opacity="0.1"/>
+    <circle cx="0" cy="0" r="30" fill="none" stroke="#e8d5a3" stroke-width="2" opacity="0.5"/>
+
+    <!-- Dollar/token symbol inside -->
+    <text x="0" y="6" text-anchor="middle" fill="#e8d5a3" opacity="0.6" font-family="Georgia, serif" font-size="28" font-weight="bold">$</text>
+    <!-- Token lines through dollar -->
+    <line x1="-2" y1="-18" x2="-2" y2="18" stroke="#e8d5a3" stroke-width="1" opacity="0.3"/>
+    <line x1="2" y1="-18" x2="2" y2="18" stroke="#e8d5a3" stroke-width="1" opacity="0.3"/>
+  </g>
+
+  <!-- Real-world assets being tokenized - LEFT SIDE (physical) -->
+  <!-- Gold bar -->
+  <g transform="translate(170, 110)" opacity="0.35">
+    <polygon points="0,15 8,0 38,0 46,15 38,25 8,25" fill="none" stroke="#e8d5a3" stroke-width="1.2"/>
+    <polygon points="8,0 38,0 46,15 16,15" fill="url(#goldshimmer)" opacity="0.5"/>
+    <line x1="8" y1="0" x2="16" y2="15" stroke="#e8d5a3" stroke-width="0.6" opacity="0.5"/>
+    <text x="23" y="35" text-anchor="middle" fill="#e8d5a3" opacity="0.3" font-family="'Courier New', monospace" font-size="7">Au</text>
+  </g>
+
+  <!-- Document/deed -->
+  <g transform="translate(150, 290)" opacity="0.3">
+    <rect x="0" y="0" width="35" height="45" rx="2" fill="none" stroke="#e8d5a3" stroke-width="1"/>
+    <line x1="6" y1="8" x2="29" y2="8" stroke="#c8c3b8" stroke-width="0.6"/>
+    <line x1="6" y1="14" x2="29" y2="14" stroke="#c8c3b8" stroke-width="0.6"/>
+    <line x1="6" y1="20" x2="29" y2="20" stroke="#c8c3b8" stroke-width="0.6"/>
+    <line x1="6" y1="26" x2="20" y2="26" stroke="#c8c3b8" stroke-width="0.6"/>
+    <!-- Seal -->
+    <circle cx="24" cy="36" r="5" fill="none" stroke="#c4601a" stroke-width="0.8"/>
+    <text x="17" y="55" fill="#e8d5a3" opacity="0.3" font-family="'Courier New', monospace" font-size="7">DEED</text>
+  </g>
+
+  <!-- Building icon (specific) -->
+  <g transform="translate(100, 160)" opacity="0.25">
+    <rect x="0" y="15" width="30" height="40" fill="none" stroke="#e8d5a3" stroke-width="1"/>
+    <polygon points="0,15 15,0 30,15" fill="none" stroke="#e8d5a3" stroke-width="1"/>
+    <rect x="12" y="35" width="8" height="20" fill="none" stroke="#e8d5a3" stroke-width="0.6"/>
+    <rect x="4" y="20" width="5" height="5" fill="none" stroke="#c8c3b8" stroke-width="0.5"/>
+    <rect x="21" y="20" width="5" height="5" fill="none" stroke="#c8c3b8" stroke-width="0.5"/>
+  </g>
+
+  <!-- Arrows from physical to token (digitization flow) -->
+  <g opacity="0.2" stroke="#c4601a" stroke-width="1" fill="none">
+    <path d="M220,125 Q280,150 335,190" stroke-dasharray="4 3"/>
+    <path d="M190,310 Q260,280 335,215" stroke-dasharray="4 3"/>
+    <path d="M140,200 Q220,195 335,200" stroke-dasharray="4 3"/>
+  </g>
+
+  <!-- RIGHT SIDE - tokenized digital representations -->
+  <!-- Token blocks/fragments -->
+  <g opacity="0.3">
+    <!-- Token 1 -->
+    <g transform="translate(560, 100)">
+      <rect x="0" y="0" width="28" height="28" rx="4" fill="none" stroke="#c4601a" stroke-width="1.2"/>
+      <text x="14" y="18" text-anchor="middle" fill="#e8d5a3" font-family="'Courier New', monospace" font-size="10">T1</text>
+    </g>
+    <!-- Token 2 -->
+    <g transform="translate(610, 130)">
+      <rect x="0" y="0" width="28" height="28" rx="4" fill="none" stroke="#c4601a" stroke-width="1.2"/>
+      <text x="14" y="18" text-anchor="middle" fill="#e8d5a3" font-family="'Courier New', monospace" font-size="10">T2</text>
+    </g>
+    <!-- Token 3 -->
+    <g transform="translate(580, 280)">
+      <rect x="0" y="0" width="28" height="28" rx="4" fill="none" stroke="#c4601a" stroke-width="1.2"/>
+      <text x="14" y="18" text-anchor="middle" fill="#e8d5a3" font-family="'Courier New', monospace" font-size="10">T3</text>
+    </g>
+    <!-- Token 4 -->
+    <g transform="translate(630, 250)">
+      <rect x="0" y="0" width="28" height="28" rx="4" fill="none" stroke="#e8d5a3" stroke-width="1"/>
+      <text x="14" y="18" text-anchor="middle" fill="#c8c3b8" font-family="'Courier New', monospace" font-size="10">T4</text>
+    </g>
+  </g>
+
+  <!-- Arrows from token to digital -->
+  <g opacity="0.2" stroke="#e8d5a3" stroke-width="1" fill="none">
+    <path d="M465,185 Q510,145 555,112" stroke-dasharray="4 3"/>
+    <path d="M465,200 Q520,170 605,142" stroke-dasharray="4 3"/>
+    <path d="M465,215 Q520,255 575,288" stroke-dasharray="4 3"/>
+    <path d="M465,210 Q530,240 625,258" stroke-dasharray="4 3"/>
+  </g>
+
+  <!-- $500T text element -->
+  <g transform="translate(400, 380)" opacity="0.2">
+    <text x="0" y="0" text-anchor="middle" fill="#e8d5a3" font-family="Georgia, serif" font-size="30" font-weight="bold" letter-spacing="3">$500T</text>
+  </g>
+
+  <!-- Blockchain chain running along bottom -->
+  <g opacity="0.12" transform="translate(250, 400)">
+    <rect x="0" y="0" width="16" height="16" rx="2" fill="none" stroke="#c4601a" stroke-width="0.8"/>
+    <line x1="16" y1="8" x2="28" y2="8" stroke="#c4601a" stroke-width="0.6"/>
+    <rect x="28" y="0" width="16" height="16" rx="2" fill="none" stroke="#c4601a" stroke-width="0.8"/>
+    <line x1="44" y1="8" x2="56" y2="8" stroke="#c4601a" stroke-width="0.6"/>
+    <rect x="56" y="0" width="16" height="16" rx="2" fill="none" stroke="#c4601a" stroke-width="0.8"/>
+    <line x1="72" y1="8" x2="84" y2="8" stroke="#c4601a" stroke-width="0.6"/>
+    <rect x="84" y="0" width="16" height="16" rx="2" fill="none" stroke="#c4601a" stroke-width="0.8"/>
+    <line x1="100" y1="8" x2="112" y2="8" stroke="#c4601a" stroke-width="0.6"/>
+    <rect x="112" y="0" width="16" height="16" rx="2" fill="none" stroke="#c4601a" stroke-width="0.8"/>
+    <line x1="128" y1="8" x2="140" y2="8" stroke="#c4601a" stroke-width="0.6"/>
+    <rect x="140" y="0" width="16" height="16" rx="2" fill="none" stroke="#c4601a" stroke-width="0.8"/>
+    <line x1="156" y1="8" x2="168" y2="8" stroke="#c4601a" stroke-width="0.6"/>
+    <rect x="168" y="0" width="16" height="16" rx="2" fill="none" stroke="#c4601a" stroke-width="0.8"/>
+  </g>
+
+  <!-- Digital grid overlay on right side (tokenized world) -->
+  <rect x="460" y="80" width="300" height="280" fill="url(#pixelgrid)" opacity="0.5"/>
+
+  <!-- Floating value numbers -->
+  <g fill="#c8c3b8" opacity="0.1" font-family="'Courier New', monospace" font-size="8">
+    <text x="500" y="95">0.0025 BTC</text>
+    <text x="560" y="320">1,250 USDC</text>
+    <text x="620" y="175">0.15 ETH</text>
+    <text x="500" y="260">$2.4M</text>
+  </g>
+
+  <!-- Film grain overlays -->
+  <rect x="16" y="16" width="768" height="418" rx="6" ry="6" fill="url(#grain3)"/>
+  <rect x="16" y="16" width="768" height="418" rx="6" ry="6" fill="url(#grain3b)"/>
+
+  <!-- Vignette -->
+  <rect x="16" y="16" width="768" height="418" rx="6" ry="6" fill="url(#vignette3)"/>
+
+  <!-- Film border marks -->
+  <line x1="16" y1="35" x2="16" y2="55" stroke="#e8d5a3" stroke-width="0.5" opacity="0.12"/>
+  <line x1="784" y1="390" x2="784" y2="415" stroke="#c4601a" stroke-width="0.4" opacity="0.1"/>
+
+  <!-- Date stamp -->
+  <g transform="translate(650, 400)">
+    <text fill="#c4601a" opacity="0.5" font-family="'Courier New', monospace" font-size="11" font-weight="bold">26  03  05</text>
+  </g>
+
+  <!-- Frame number -->
+  <g transform="translate(40, 42)">
+    <text fill="#e8d5a3" opacity="0.25" font-family="'Courier New', monospace" font-size="10">No. 03</text>
+  </g>
+
+  <!-- Film strip holes -->
+  <g opacity="0.08" fill="#e8d5a3">
+    <rect x="80" y="18" width="12" height="8" rx="1"/>
+    <rect x="110" y="18" width="12" height="8" rx="1"/>
+    <rect x="140" y="18" width="12" height="8" rx="1"/>
+    <rect x="650" y="18" width="12" height="8" rx="1"/>
+    <rect x="680" y="18" width="12" height="8" rx="1"/>
+    <rect x="710" y="18" width="12" height="8" rx="1"/>
+  </g>
+</svg>

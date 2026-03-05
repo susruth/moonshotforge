@@ -9,14 +9,6 @@
   </div>
 </div>
 
-<!-- Blog Modal -->
-<div class="modal-overlay" id="blogModal" role="dialog" aria-modal="true" aria-label="Blog post">
-  <div class="modal-box">
-    <button class="absolute top-5 right-5 bg-transparent border-none text-forge-cream text-[20px] cursor-pointer leading-none transition-colors duration-200 hover:text-forge-accent" onclick="closeModal('blogModal')" aria-label="Close">✕</button>
-    <div id="blogModalBody"></div>
-  </div>
-</div>
-
 <!-- Role Modal -->
 <div class="modal-overlay" id="roleModal" role="dialog" aria-modal="true" aria-label="Job description">
   <div class="modal-box">
@@ -58,6 +50,7 @@
     text-transform: uppercase;
     color: rgba(200,195,184,0.4);
     margin-bottom: 28px;
+    padding-bottom: 4px;
   }
   .modal-body p { margin-bottom: 14px; font-size: 13px; line-height: 1.9; color: #c8c3b8; }
   .modal-metrics {
@@ -94,13 +87,6 @@
     font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
     color: rgba(200,195,184,0.5); border: 1px solid rgba(240,237,230,0.08); padding: 5px 10px;
   }
-  /* Blog modal */
-  .blog-modal-body { font-size: 13px; line-height: 2; color: #c8c3b8; }
-  .blog-modal-body h3 {
-    font-family: 'Syne', sans-serif; font-size: 18px; font-weight: 700;
-    margin: 24px 0 10px; color: #f0ede6;
-  }
-  .blog-modal-body p { margin-bottom: 14px; }
   /* Role modal */
   .role-modal-body { font-size: 13px; line-height: 1.9; color: #c8c3b8; }
   .role-modal-body p { margin-bottom: 14px; }
@@ -111,53 +97,163 @@
   .role-modal-body ul { margin-left: 16px; margin-bottom: 14px; }
   .role-modal-body li { margin-bottom: 6px; font-size: 12px; line-height: 1.7; color: rgba(200,195,184,0.75); }
   /* Apply form */
-  .apply-form { display: flex; flex-direction: column; gap: 14px; }
-  .form-group { display: flex; flex-direction: column; gap: 5px; }
-  .form-label { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(200,195,184,0.5); }
+  .apply-form {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+  }
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .form-label {
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: rgba(200,195,184,0.5);
+    font-weight: 400;
+  }
   .form-input {
-    background: #1a1a18; border: 1px solid rgba(240,237,230,0.08);
-    color: #f0ede6; padding: 11px 14px;
-    font-family: 'DM Mono', monospace; font-size: 13px;
-    outline: none; transition: border-color 0.2s; width: 100%;
+    background: #111110;
+    border: 1px solid rgba(240,237,230,0.1);
+    border-radius: 2px;
+    color: #f0ede6;
+    padding: 13px 16px;
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+    line-height: 1.5;
+    outline: none;
+    transition: border-color 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+    width: 100%;
+    box-sizing: border-box;
   }
-  .form-input:focus { border-color: rgba(232,213,163,0.4); }
-  textarea.form-input { resize: vertical; min-height: 90px; }
-  select.form-input { cursor: pointer; }
-  select.form-input option { background: #1a1a18; }
-  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-  @media (max-width: 520px) { .form-row { grid-template-columns: 1fr; } }
+  .form-input::placeholder {
+    color: rgba(200,195,184,0.25);
+  }
+  .form-input:hover {
+    border-color: rgba(240,237,230,0.18);
+    background: #141413;
+  }
+  .form-input:focus {
+    border-color: rgba(232,213,163,0.5);
+    box-shadow: 0 0 0 3px rgba(232,213,163,0.06);
+    background: #141413;
+  }
+  textarea.form-input {
+    resize: vertical;
+    min-height: 100px;
+    line-height: 1.7;
+  }
+  select.form-input {
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1.5L6 6.5L11 1.5' stroke='rgba(200,195,184,0.4)' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    padding-right: 38px;
+  }
+  select.form-input option {
+    background: #111110;
+    color: #f0ede6;
+    padding: 8px;
+  }
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+  }
+  @media (max-width: 520px) {
+    .form-row { grid-template-columns: 1fr; gap: 22px; }
+  }
   .form-submit {
-    font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.14em;
-    text-transform: uppercase; color: #080808; background: #e8d5a3;
-    padding: 13px 26px; border: 1px solid #e8d5a3; cursor: pointer;
-    transition: background 0.2s, color 0.2s; margin-top: 6px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #080808;
+    background: #e8d5a3;
+    padding: 15px 30px;
+    border: 1px solid #e8d5a3;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: background 0.25s ease, color 0.25s ease, transform 0.15s ease;
+    margin-top: 12px;
+    font-weight: 500;
   }
-  .form-submit:hover { background: transparent; color: #e8d5a3; }
-  .form-success { display: none; text-align: center; padding: 40px 20px; }
-  .form-success-icon { font-size: 44px; margin-bottom: 14px; }
+  .form-submit:hover {
+    background: transparent;
+    color: #e8d5a3;
+  }
+  .form-submit:active {
+    transform: scale(0.98);
+  }
+  .form-success {
+    display: none;
+    text-align: center;
+    padding: 48px 24px;
+  }
+  .form-success-icon {
+    font-size: 48px;
+    margin-bottom: 18px;
+    display: block;
+  }
   .form-success-title {
-    font-family: 'Syne', sans-serif; font-weight: 700; font-size: 24px; margin-bottom: 9px;
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 24px;
+    margin-bottom: 12px;
   }
-  .form-success-sub { font-size: 12px; color: rgba(200,195,184,0.6); line-height: 1.7; }
-  .role-cta { margin-top: 28px; display: flex; gap: 10px; flex-wrap: wrap; }
+  .form-success-sub {
+    font-size: 13px;
+    color: rgba(200,195,184,0.6);
+    line-height: 1.8;
+    max-width: 340px;
+    margin: 0 auto;
+  }
+  .role-cta {
+    margin-top: 32px;
+    padding-top: 24px;
+    border-top: 1px solid rgba(240,237,230,0.08);
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
   .btn-p {
-    font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.14em;
-    text-transform: uppercase; color: #080808; background: #e8d5a3;
-    padding: 12px 22px; border: 1px solid #e8d5a3; cursor: pointer;
-    transition: background 0.2s, color 0.2s;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #080808;
+    background: #e8d5a3;
+    padding: 13px 24px;
+    border: 1px solid #e8d5a3;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: background 0.25s ease, color 0.25s ease, transform 0.15s ease;
+    font-weight: 500;
   }
   .btn-p:hover { background: transparent; color: #e8d5a3; }
+  .btn-p:active { transform: scale(0.98); }
   .btn-g {
-    font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.14em;
-    text-transform: uppercase; color: rgba(200,195,184,0.7); background: transparent;
-    padding: 12px 22px; border: 1px solid rgba(240,237,230,0.08); cursor: pointer;
-    transition: border-color 0.2s, color 0.2s;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(200,195,184,0.7);
+    background: transparent;
+    padding: 13px 24px;
+    border: 1px solid rgba(240,237,230,0.1);
+    border-radius: 2px;
+    cursor: pointer;
+    transition: border-color 0.25s ease, color 0.25s ease;
   }
   .btn-g:hover { border-color: #e8d5a3; color: #e8d5a3; }
 </style>
 
 <script>
-import type { Project, BlogPost, Role } from '../data';
+import type { Project, Role } from '../data';
 
 // ── Data (duplicated client-side for modal rendering) ──────────────────────
 const projects: Project[] = [
@@ -167,12 +263,6 @@ const projects: Project[] = [
   { tag:'AI × Web3 · Beta', name:'Synapse Node', chain:'Cosmos · IBC', status:'Open Beta', raised:'$6M Seed', desc:'Synapse Node is a decentralized inference network for running AI models on-chain. Compute providers stake tokens to offer GPU capacity; requesters pay per-inference with cryptographic proofs of execution verifying outputs.', desc2:'The network currently supports major open-source models including Llama, Mistral, and Stable Diffusion variants. An on-chain reputation system penalizes incorrect outputs via optimistic fraud proofs, ensuring result integrity without requiring every computation to be verified.', metrics:[{val:'12K',label:'Active GPUs'},{val:'$0.0002',label:'Per Inference'},{val:'99.7%',label:'Uptime'}], chains:['Cosmos Hub','Osmosis IBC','Ethereum (settlement)'] },
   { tag:'Identity · Protocol', name:'Cerid', chain:'Ethereum · StarkNet', status:'Mainnet Alpha', raised:'$9M Seed', desc:'Cerid is a self-sovereign identity layer with selective disclosure ZK proofs. Users prove attributes about themselves (age, nationality, accreditation status) without revealing the underlying data, enabling compliant DeFi without KYC data leakage.', desc2:'Cerid integrates with government-issued digital IDs in 12 countries and generates Groth16 proofs client-side in under 2 seconds. DeFi protocols can require proof of non-US personhood or investor accreditation with one line of Solidity.', metrics:[{val:'2s',label:'Client-side Proof'},{val:'12',label:'Gov ID Integrations'},{val:'280K',label:'Verified Users'}], chains:['Ethereum','StarkNet','Optimism','Polygon'] },
   { tag:'Gaming · Live', name:'Ironforge Arena', chain:'Immutable · Ronin', status:'Live · Season 3', raised:'$11M Seed', desc:'Ironforge Arena is a fully on-chain strategy game with player-owned economies. Every unit, territory, and resource is an NFT. The game economy is governed by token holders, with an in-game DAO managing seasonal rules and prize pools.', desc2:'The game processes 4M+ transactions per day on Immutable zkEVM, with gas costs abstracted entirely from players. A peer-to-peer marketplace allows real-money trading of in-game assets, with $8M GMV in the first quarter alone.', metrics:[{val:'$8M',label:'Q1 GMV'},{val:'200K',label:'Active Wallets'},{val:'4M+',label:'Daily Transactions'}], chains:['Immutable zkEVM','Ronin','Ethereum (NFT bridging)'] },
-];
-
-const blogs: BlogPost[] = [
-  { cat:'Research', date:'Mar 2025', imgText:'ZK', title:'Why zkVMs Will Eat Every Blockchain Runtime', excerpt:'...', body:`<p>The transition from EVM to zkVM is not incremental — it is a regime change. Here's why we believe every major chain will migrate within five years, and what it means for developers building today.</p><h3>The EVM's Original Sin</h3><p>The Ethereum Virtual Machine was designed for correctness and determinism, not for provability. Every opcode was chosen without considering whether a ZK proof could be generated over it efficiently. KECCAK256 is one of the most expensive operations to prove in a circuit — yet it's used everywhere in Ethereum's state trie.</p><p>zkVMs solve this by either redesigning the instruction set or by building massively parallelized proving infrastructure that can handle the EVM's idiosyncrasies at scale. Both approaches are valid; the winner will be determined by developer adoption, not technical elegance.</p><h3>Why This Time Is Different</h3><p>Previous generations of ZK technology required hand-writing circuits for every computation. Modern zkVMs like SP1, RISC Zero, and Jolt allow any program compiled to RISC-V or WASM to be proven automatically. The proving overhead has fallen from 10,000× to under 100× in three years, and it's still falling.</p>` },
-  { cat:'Thesis', date:'Feb 2025', imgText:'AI', title:'The Autonomous Agent Economy: Our Bet on On-Chain AI', excerpt:'...', body:`<p>AI agents need three things to operate autonomously: money, memory, and verifiable compute. Today, all three are broken. We explain our thesis for why blockchain is the missing infrastructure layer.</p><h3>The Problem With Centralized AI</h3><p>Current AI systems operate within walled gardens. An agent running on one provider's infrastructure cannot trustlessly transact with an agent running on another's. There is no standard for agent-to-agent payment, no verifiable record of what an agent has done, and no way to audit whether an AI actually executed the computation it claims.</p><p>Blockchain solves all three. On-chain wallets give agents a persistent, self-sovereign identity and payment rail. Smart contracts provide verifiable, auditable execution records. Decentralized compute networks ensure inference results can be cryptographically proven.</p><h3>What We're Backing</h3><p>We're investing at the intersection of AI and crypto in three areas: agent frameworks with native wallet and payment rails, decentralized inference networks with proof-of-computation, and on-chain memory and context storage primitives.</p>` },
-  { cat:'Market Analysis', date:'Jan 2025', imgText:'RWA', title:'The $500T Opportunity: Tokenizing Real-World Assets at Scale', excerpt:'...', body:`<p>Real estate, credit, commodities, and equities are all moving on-chain. We analyze the $500 trillion opportunity and the infrastructure stack needed to make institutional-grade tokenization a reality.</p><h3>Why Now</h3><p>Three macro forces have converged: regulatory clarity in major jurisdictions, the maturation of on-chain compliance tooling, and a generation of institutional investors who have grown comfortable holding digital assets.</p><p>BlackRock's BUIDL fund crossed $500M in AUM within months of launch. Franklin Templeton's money market fund is live on Stellar. These aren't experiments — they're the opening moves of a multi-decade transition.</p><h3>The Infrastructure Gap</h3><p>The biggest bottleneck isn't regulatory or institutional demand — it's infrastructure. Tokenization platforms need to handle legal wrapper creation, token issuance with embedded transfer restrictions, KYC/AML at the wallet level, and secondary market liquidity provisioning. VaultMesh, our portfolio company, is building this full stack.</p>` },
 ];
 
 const roles: Role[] = [
@@ -195,7 +285,7 @@ function openModal(id: string) {
 };
 
 // Close on overlay click
-['projectModal','blogModal','roleModal','applyModal'].forEach(id => {
+['projectModal','roleModal','applyModal'].forEach(id => {
   document.getElementById(id)!.addEventListener('click', (e: Event) => {
     if (e.target === document.getElementById(id)) (window as any).closeModal(id);
   });
@@ -204,7 +294,7 @@ function openModal(id: string) {
 // ESC key
 document.addEventListener('keydown', (e: KeyboardEvent) => {
   if (e.key === 'Escape') {
-    ['projectModal','blogModal','roleModal','applyModal'].forEach(id => (window as any).closeModal(id));
+    ['projectModal','roleModal','applyModal'].forEach(id => (window as any).closeModal(id));
   }
 });
 
@@ -223,22 +313,6 @@ document.querySelectorAll<HTMLButtonElement>('[data-project]').forEach(btn => {
       </div>
       <div class="modal-chains">${p.chains.map(c => `<span class="modal-chain">${c}</span>`).join('')}</div>`;
     openModal('projectModal');
-  });
-});
-
-// ── Blog cards ─────────────────────────────────────────────────────────────
-document.querySelectorAll<HTMLButtonElement>('[data-blog]').forEach(btn => {
-  btn.addEventListener('click', () => {
-    const i = parseInt(btn.dataset.blog!);
-    const b = blogs[i];
-    document.getElementById('blogModalBody')!.innerHTML = `
-      <div style="display:flex;gap:10px;align-items:center;margin-bottom:18px;flex-wrap:wrap;">
-        <span class="modal-tag">${b.cat}</span>
-        <span style="font-size:10px;letter-spacing:.14em;color:rgba(200,195,184,.4)">${b.date}</span>
-      </div>
-      <div class="modal-title" style="font-size:clamp(20px,4vw,32px)">${b.title}</div>
-      <div class="blog-modal-body" style="margin-top:22px">${b.body}</div>`;
-    openModal('blogModal');
   });
 });
 
@@ -285,7 +359,7 @@ function openApplyModal(type: string, roleTitle: string) {
     <span class="modal-tag">Apply</span>
     <div class="modal-title" style="font-size:clamp(20px,4vw,30px)">${titles[type] || 'Apply'}</div>
     <div class="modal-sub">${subtitles[type] || ''}</div>
-    <div style="margin-top:24px">
+    <div style="margin-top:28px; padding-top:24px; border-top: 1px solid rgba(240,237,230,0.08);">
       <div class="apply-form" id="applyFormInner">${getApplyFields(type, roleTitle)}<button class="form-submit" id="applySubmitBtn">Submit Application →</button></div>
       <div class="form-success" id="applySuccess">
         <div class="form-success-icon">✓</div>
