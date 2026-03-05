@@ -43,12 +43,9 @@
     </pattern>
   </defs>
 
-  <!-- Polaroid frame -->
-  <rect x="0" y="0" width="800" height="450" rx="12" ry="12" fill="#1a1a18"/>
-
-  <!-- Photo area -->
-  <rect x="16" y="16" width="768" height="418" rx="6" ry="6" fill="#0e0d0b"/>
-  <rect x="16" y="16" width="768" height="418" rx="6" ry="6" fill="url(#warmth3)"/>
+  <!-- Background -->
+  <rect x="0" y="0" width="800" height="450" fill="#0e0d0b"/>
+  <rect x="0" y="0" width="800" height="450" fill="url(#warmth3)"/>
 
   <!-- Background cityscape silhouette - buildings representing real-world assets -->
   <g opacity="0.12" fill="#c8c3b8">
@@ -214,33 +211,19 @@
   </g>
 
   <!-- Film grain overlays -->
-  <rect x="16" y="16" width="768" height="418" rx="6" ry="6" fill="url(#grain3)"/>
-  <rect x="16" y="16" width="768" height="418" rx="6" ry="6" fill="url(#grain3b)"/>
+  <rect x="0" y="0" width="800" height="450" fill="url(#grain3)"/>
+  <rect x="0" y="0" width="800" height="450" fill="url(#grain3b)"/>
 
   <!-- Vignette -->
-  <rect x="16" y="16" width="768" height="418" rx="6" ry="6" fill="url(#vignette3)"/>
-
-  <!-- Film border marks -->
-  <line x1="16" y1="35" x2="16" y2="55" stroke="#e8d5a3" stroke-width="0.5" opacity="0.12"/>
-  <line x1="784" y1="390" x2="784" y2="415" stroke="#c4601a" stroke-width="0.4" opacity="0.1"/>
+  <rect x="0" y="0" width="800" height="450" fill="url(#vignette3)"/>
 
   <!-- Date stamp -->
-  <g transform="translate(650, 400)">
+  <g transform="translate(680, 425)">
     <text fill="#c4601a" opacity="0.5" font-family="'Courier New', monospace" font-size="11" font-weight="bold">26  03  05</text>
   </g>
 
   <!-- Frame number -->
-  <g transform="translate(40, 42)">
+  <g transform="translate(24, 28)">
     <text fill="#e8d5a3" opacity="0.25" font-family="'Courier New', monospace" font-size="10">No. 03</text>
-  </g>
-
-  <!-- Film strip holes -->
-  <g opacity="0.08" fill="#e8d5a3">
-    <rect x="80" y="18" width="12" height="8" rx="1"/>
-    <rect x="110" y="18" width="12" height="8" rx="1"/>
-    <rect x="140" y="18" width="12" height="8" rx="1"/>
-    <rect x="650" y="18" width="12" height="8" rx="1"/>
-    <rect x="680" y="18" width="12" height="8" rx="1"/>
-    <rect x="710" y="18" width="12" height="8" rx="1"/>
   </g>
 </svg>

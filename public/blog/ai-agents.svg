@@ -40,12 +40,9 @@
     </filter>
   </defs>
 
-  <!-- Polaroid frame -->
-  <rect x="0" y="0" width="800" height="450" rx="12" ry="12" fill="#1a1a18"/>
-
-  <!-- Photo area -->
-  <rect x="16" y="16" width="768" height="418" rx="6" ry="6" fill="#0e0d0b"/>
-  <rect x="16" y="16" width="768" height="418" rx="6" ry="6" fill="url(#warmth2)"/>
+  <!-- Background -->
+  <rect x="0" y="0" width="800" height="450" fill="#0e0d0b"/>
+  <rect x="0" y="0" width="800" height="450" fill="url(#warmth2)"/>
 
   <!-- Neural network background - layer 1 (input) -->
   <g opacity="0.15" filter="url(#softglow)">
@@ -204,33 +201,19 @@
   </g>
 
   <!-- Film grain -->
-  <rect x="16" y="16" width="768" height="418" rx="6" ry="6" fill="url(#grain2)"/>
-  <rect x="16" y="16" width="768" height="418" rx="6" ry="6" fill="url(#grain2b)"/>
+  <rect x="0" y="0" width="800" height="450" fill="url(#grain2)"/>
+  <rect x="0" y="0" width="800" height="450" fill="url(#grain2b)"/>
 
   <!-- Vignette -->
-  <rect x="16" y="16" width="768" height="418" rx="6" ry="6" fill="url(#vignette2)"/>
-
-  <!-- Film border artifacts -->
-  <line x1="18" y1="16" x2="18" y2="50" stroke="#c4601a" stroke-width="0.4" opacity="0.12"/>
-  <line x1="782" y1="400" x2="782" y2="434" stroke="#e8d5a3" stroke-width="0.4" opacity="0.1"/>
+  <rect x="0" y="0" width="800" height="450" fill="url(#vignette2)"/>
 
   <!-- Date stamp -->
-  <g transform="translate(650, 400)">
+  <g transform="translate(680, 425)">
     <text fill="#c4601a" opacity="0.5" font-family="'Courier New', monospace" font-size="11" font-weight="bold">26  03  05</text>
   </g>
 
   <!-- Frame number -->
-  <g transform="translate(40, 42)">
+  <g transform="translate(24, 28)">
     <text fill="#e8d5a3" opacity="0.25" font-family="'Courier New', monospace" font-size="10">No. 02</text>
-  </g>
-
-  <!-- Film strip holes -->
-  <g opacity="0.08" fill="#e8d5a3">
-    <rect x="80" y="18" width="12" height="8" rx="1"/>
-    <rect x="110" y="18" width="12" height="8" rx="1"/>
-    <rect x="140" y="18" width="12" height="8" rx="1"/>
-    <rect x="650" y="18" width="12" height="8" rx="1"/>
-    <rect x="680" y="18" width="12" height="8" rx="1"/>
-    <rect x="710" y="18" width="12" height="8" rx="1"/>
   </g>
 </svg>
