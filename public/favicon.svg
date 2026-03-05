@@ -1,21 +1,16 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
-  <!-- Dark hexagon with gold stroke -->
+  <!-- Gold hexagon -->
   <polygon
     points="32,2 62,17 62,49 32,62 2,49 2,17"
-    fill="#080808"
-    stroke="#e8d5a3"
-    stroke-width="3"
-    stroke-linejoin="round"
+    fill="#e8d5a3"
   />
-  <!-- Forge/anvil-inspired "M" mark in gold -->
+  <!-- Dark "M" mark -->
   <path
     d="M 18,44 L 18,26 L 25,38 L 32,24 L 39,38 L 46,26 L 46,44"
     fill="none"
-    stroke="#e8d5a3"
+    stroke="#080808"
     stroke-width="3.5"
     stroke-linecap="round"
     stroke-linejoin="round"
   />
-  <!-- Small anvil/spark accent at the top of the M -->
-  <circle cx="32" cy="20" r="2" fill="#e8d5a3" opacity="0.8"/>
 </svg>
