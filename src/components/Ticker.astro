@@ -1,0 +1,24 @@
+---
+const items = [
+  'DeFi Infrastructure', 'Layer 2 Protocols', 'On-chain AI',
+  'Cross-chain Bridges', 'ZK Systems', 'Tokenized Assets',
+  'Decentralized Identity', 'Web3 Gaming',
+];
+---
+
+<div class="relative z-[1] border-t border-b border-subtle bg-forge-dim2 overflow-hidden py-3">
+  <div class="ticker-track flex whitespace-nowrap" aria-hidden="true">
+    {[0, 1].map(() => (
+      <div class="flex items-center shrink-0">
+        {items.map(item => (
+          <>
+            <span class="text-[10px] tracking-wider3 uppercase text-[rgba(200,195,184,0.45)] px-7">
+              {item}
+            </span>
+            <span class="text-forge-accent text-[10px]">◆</span>
+          </>
+        ))}
+      </div>
+    ))}
+  </div>
+</div>

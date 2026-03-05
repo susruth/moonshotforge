@@ -1,0 +1,125 @@
+---
+const navLinks = [
+  { href: '#about',     label: 'About' },
+  { href: '#portfolio', label: 'Portfolio' },
+  { href: '#process',   label: 'Model' },
+  { href: '#thesis',    label: 'Thesis' },
+  { href: '#team',      label: 'Team' },
+  { href: '#blog',      label: 'Blog' },
+  { href: '#careers',   label: 'Careers' },
+];
+---
+
+<nav
+  class="fixed top-0 left-0 right-0 z-[200] flex items-center justify-between
+         h-16 px-5
+         sm:h-[72px] sm:px-8
+         lg:px-[60px]
+         border-b border-subtle bg-[rgba(8,8,8,0.85)]
+         backdrop-blur-xl"
+>
+  <!-- Logo -->
+  <a href="#hero" class="flex items-center gap-[9px] no-underline shrink-0">
+    <div
+      class="hex animate-hex w-[22px] h-[22px] bg-forge-accent shrink-0"
+      aria-hidden="true"
+    ></div>
+    <span class="font-syne font-extrabold text-[15px] tracking-[0.08em] uppercase text-forge-white">
+      Moonshot Forge
+    </span>
+  </a>
+
+  <!-- Desktop nav links -->
+  <ul class="hidden lg:flex gap-8 list-none">
+    {navLinks.map(link => (
+      <li>
+        <a
+          href={link.href}
+          class="text-[11px] tracking-wider2 uppercase text-forge-cream
+                 no-underline transition-colors duration-200 hover:text-forge-accent"
+        >
+          {link.label}
+        </a>
+      </li>
+    ))}
+  </ul>
+
+  <div class="flex items-center gap-3">
+    <!-- Desktop CTA -->
+    <button
+      id="nav-apply-btn"
+      class="hidden lg:block font-mono text-[11px] tracking-wider2 uppercase
+             text-forge-black bg-forge-accent px-[18px] py-[9px]
+             border border-forge-accent cursor-pointer
+             transition-all duration-200 hover:bg-transparent hover:text-forge-accent"
+    >
+      Apply Now
+    </button>
+
+    <!-- Hamburger (mobile/tablet) -->
+    <button
+      class="hamburger lg:hidden flex flex-col gap-[5px] bg-transparent border-none cursor-pointer p-1"
+      id="hamburger"
+      aria-label="Toggle menu"
+      aria-expanded="false"
+    >
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile drawer -->
+<div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true">
+  {navLinks.map(link => (
+    <a
+      href={link.href}
+      class="mob-link font-syne font-bold text-[26px] sm:text-[30px] tracking-[-0.01em] uppercase
+             text-forge-white no-underline border-b border-subtle py-5
+             transition-colors duration-200 hover:text-forge-accent"
+    >
+      {link.label}
+    </a>
+  ))}
+  <button
+    id="mob-apply-btn"
+    class="font-mono text-[13px] tracking-wider2 uppercase text-forge-black
+           bg-forge-accent py-4 px-7 text-center mt-6 border-none cursor-pointer w-full"
+  >
+    Apply Now →
+  </button>
+</div>
+
+<script>
+  const hamburger   = document.getElementById('hamburger')!;
+  const mobileMenu  = document.getElementById('mobileMenu')!;
+  const navApplyBtn = document.getElementById('nav-apply-btn')!;
+  const mobApplyBtn = document.getElementById('mob-apply-btn')!;
+
+  function closeMobileMenu() {
+    hamburger.classList.remove('open');
+    mobileMenu.classList.remove('open');
+    document.body.classList.remove('no-scroll');
+    hamburger.setAttribute('aria-expanded', 'false');
+  }
+
+  hamburger.addEventListener('click', () => {
+    const isOpen = mobileMenu.classList.toggle('open');
+    hamburger.classList.toggle('open');
+    document.body.classList.toggle('no-scroll', isOpen);
+    hamburger.setAttribute('aria-expanded', String(isOpen));
+  });
+
+  document.querySelectorAll('.mob-link').forEach(el =>
+    el.addEventListener('click', closeMobileMenu)
+  );
+
+  navApplyBtn.addEventListener('click', () => {
+    document.dispatchEvent(new CustomEvent('open-apply', { detail: { type: 'founder' } }));
+  });
+  mobApplyBtn.addEventListener('click', () => {
+    closeMobileMenu();
+    document.dispatchEvent(new CustomEvent('open-apply', { detail: { type: 'founder' } }));
+  });
+</script>

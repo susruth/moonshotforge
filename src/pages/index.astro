@@ -1,0 +1,58 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import Hero from '../components/Hero.astro';
+import Ticker from '../components/Ticker.astro';
+import About from '../components/About.astro';
+import Portfolio from '../components/Portfolio.astro';
+import Process from '../components/Process.astro';
+import Thesis from '../components/Thesis.astro';
+import Team from '../components/Team.astro';
+import Blog from '../components/Blog.astro';
+import Careers from '../components/Careers.astro';
+import Apply from '../components/Apply.astro';
+import CtaBanner from '../components/CtaBanner.astro';
+import Footer from '../components/Footer.astro';
+import Modals from '../components/Modals.astro';
+---
+
+<Layout>
+  <Nav />
+
+  <main>
+    <Hero />
+    <Ticker />
+
+    <hr class="border-0 border-t border-subtle relative z-[1]" />
+    <About />
+
+    <hr class="border-0 border-t border-subtle relative z-[1]" />
+    <Portfolio />
+
+    <hr class="border-0 border-t border-subtle relative z-[1]" />
+    <Process />
+
+    <hr class="border-0 border-t border-subtle relative z-[1]" />
+    <Thesis />
+
+    <hr class="border-0 border-t border-subtle relative z-[1]" />
+    <Team />
+
+    <hr class="border-0 border-t border-subtle relative z-[1]" />
+    <Blog />
+
+    <hr class="border-0 border-t border-subtle relative z-[1]" />
+    <Careers />
+
+    <hr class="border-0 border-t border-subtle relative z-[1]" />
+    <Apply />
+  </main>
+
+  <CtaBanner />
+  <Footer />
+  <Modals />
+</Layout>
+
+<style>
+  .border-subtle { border-color: rgba(240,237,230,0.08); }
+</style>

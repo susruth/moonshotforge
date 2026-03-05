@@ -1,0 +1,137 @@
+---
+const studioLinks = [
+  { href: '#about',     label: 'About' },
+  { href: '#portfolio', label: 'Portfolio' },
+  { href: '#process',   label: 'Our Model' },
+  { href: '#thesis',    label: 'Investment Thesis' },
+  { href: '#team',      label: 'Team' },
+  { href: '#blog',      label: 'Blog' },
+];
+
+const applyLinks = [
+  { label: 'Founder Program',    type: 'founder' },
+  { label: 'Builder Residency',  type: 'residency' },
+  { label: 'Partner LP Access',  type: 'lp' },
+  { label: 'Protocol Partnership', type: 'partner' },
+];
+
+const socialLinks = [
+  { href: '#', label: 'Twitter / X' },
+  { href: '#', label: 'Telegram' },
+  { href: '#', label: 'Farcaster' },
+  { href: '#', label: 'GitHub' },
+  { href: '#', label: 'Mirror' },
+];
+---
+
+<footer class="relative z-[1] border-t border-subtle
+               px-5 py-12 sm:px-8 sm:py-14 lg:px-[60px] lg:py-[60px]
+               grid grid-cols-2 gap-8
+               sm:grid-cols-2
+               lg:grid-cols-[1.4fr_1fr_1fr_1fr] lg:gap-12">
+  <!-- Brand -->
+  <div class="col-span-2 lg:col-span-1">
+    <a href="#hero" class="flex items-center gap-2 mb-3.5 no-underline">
+      <div class="hex w-[18px] h-[18px] bg-forge-accent shrink-0" aria-hidden="true"></div>
+      <span class="font-syne font-extrabold text-[14px] tracking-[0.08em] uppercase text-forge-white">
+        Moonshot Forge
+      </span>
+    </a>
+    <p class="text-[11px] leading-[1.8] text-[rgba(200,195,184,0.38)] max-w-[200px] mb-6">
+      Building the decentralized protocols that underpin tomorrow's economy.
+    </p>
+    <div class="flex gap-2.5 flex-wrap">
+      <a href="#about"
+         class="font-mono text-[10px] tracking-wider2 uppercase text-forge-cream border border-subtle
+                px-3.5 py-2 no-underline transition-all duration-200 hover:border-forge-accent hover:text-forge-accent">
+        About
+      </a>
+      <button
+        id="footer-apply-btn"
+        class="font-mono text-[10px] tracking-wider2 uppercase text-forge-black bg-forge-accent
+               px-3.5 py-2 border border-forge-accent cursor-pointer
+               transition-all duration-200 hover:bg-transparent hover:text-forge-accent">
+        Apply
+      </button>
+    </div>
+  </div>
+
+  <!-- Studio links -->
+  <div>
+    <div class="text-[10px] tracking-wider3 uppercase text-[rgba(200,195,184,0.28)] mb-4">Studio</div>
+    <ul class="list-none flex flex-col gap-2.5">
+      {studioLinks.map(l => (
+        <li>
+          <a href={l.href}
+             class="text-[12px] text-[rgba(200,195,184,0.5)] no-underline transition-colors duration-200 hover:text-forge-accent">
+            {l.label}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+
+  <!-- Apply links -->
+  <div>
+    <div class="text-[10px] tracking-wider3 uppercase text-[rgba(200,195,184,0.28)] mb-4">Apply</div>
+    <ul class="list-none flex flex-col gap-2.5">
+      {applyLinks.map(l => (
+        <li>
+          <button
+            class="footer-apply-link text-[12px] text-[rgba(200,195,184,0.5)] bg-transparent border-none cursor-pointer p-0
+                   transition-colors duration-200 hover:text-forge-accent text-left"
+            data-apply-type={l.type}
+          >
+            {l.label}
+          </button>
+        </li>
+      ))}
+      <li>
+        <a href="#careers"
+           class="text-[12px] text-[rgba(200,195,184,0.5)] no-underline transition-colors duration-200 hover:text-forge-accent">
+          Open Roles
+        </a>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Social (intentionally no real links) -->
+  <div>
+    <div class="text-[10px] tracking-wider3 uppercase text-[rgba(200,195,184,0.28)] mb-4">Network</div>
+    <ul class="list-none flex flex-col gap-2.5">
+      {socialLinks.map(l => (
+        <li>
+          <a href={l.href}
+             class="text-[12px] text-[rgba(200,195,184,0.5)] no-underline transition-colors duration-200 hover:text-forge-accent">
+            {l.label}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</footer>
+
+<!-- Footer bottom bar -->
+<div class="relative z-[1] border-t border-subtle px-5 py-4 sm:px-8 lg:px-[60px]
+            flex flex-col gap-1.5 sm:flex-row sm:items-center sm:justify-between">
+  <span class="text-[10px] tracking-[0.12em] uppercase text-[rgba(200,195,184,0.22)]">
+    © 2025 Moonshot Forge. All rights reserved.
+  </span>
+  <div class="flex items-center gap-1.5 text-[10px] tracking-[0.14em] uppercase text-[rgba(200,195,184,0.22)]">
+    <span class="animate-pulse2 w-1.5 h-1.5 bg-green-500 rounded-full"></span>
+    All systems operational
+  </div>
+</div>
+
+<script>
+  document.getElementById('footer-apply-btn')!.addEventListener('click', () => {
+    document.dispatchEvent(new CustomEvent('open-apply', { detail: { type: 'founder' } }));
+  });
+
+  document.querySelectorAll<HTMLButtonElement>('.footer-apply-link').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const type = btn.dataset.applyType!;
+      document.dispatchEvent(new CustomEvent('open-apply', { detail: { type } }));
+    });
+  });
+</script>

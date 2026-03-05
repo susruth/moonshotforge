@@ -1,0 +1,95 @@
+---
+const founders = [
+  { initials: 'AK', name: 'Aiden Koh',   role: 'General Partner',       bio: 'Former CTO at LayerZero. Led protocol architecture for $4B in bridged assets. PhD in cryptography, Stanford. 3 exits.' },
+  { initials: 'SR', name: 'Sera Reyes',  role: 'General Partner',       bio: 'Ex-Paradigm investor. Led Series A into Uniswap, dYdX, Blur. Founded two DeFi protocols with $600M TVL peak.' },
+  { initials: 'MV', name: 'Marcus Vael', role: 'Head of Engineering',   bio: '10 years in L1/L2 core dev. Contributor to Ethereum and Celestia. Built infra serving 3M daily transactions.' },
+  { initials: 'NJ', name: 'Nadia Jaris', role: 'Head of Product',       bio: 'Former PM at Coinbase and Optimism. Shipped 7 consumer crypto products. Obsessed with onboarding the next billion.' },
+];
+
+const advisors = [
+  { initials: 'EL', name: 'Elena Lark',   role: 'Protocol Advisor',       prev: 'Former Lead Researcher, Ethereum Foundation · zkRollup pioneer' },
+  { initials: 'DM', name: 'Dani Mok',     role: 'Go-to-Market Advisor',   prev: 'CMO at Binance (2019–2022) · Built 15M user Web3 communities' },
+  { initials: 'RS', name: 'Ravi Sharma',  role: 'Legal & Compliance',     prev: 'Partner, Latham & Watkins · 20+ token launches · Former SEC digital assets task force' },
+];
+---
+
+<section id="team" class="relative z-[1] bg-forge-black px-5 py-20 sm:px-8 sm:py-24 lg:px-[60px] lg:py-[120px]">
+  <div class="section-label fade-up">06 · Team</div>
+  <h2 class="fade-up font-syne font-bold tracking-[-0.02em] leading-[1.05] mb-14
+             text-[30px] sm:text-[38px] lg:text-[48px] xl:text-[54px]">
+    The Founders
+  </h2>
+
+  <!-- Founders grid -->
+  <div class="grid grid-cols-2 lg:grid-cols-4 gap-[2px]">
+    {founders.map((f, i) => (
+      <div
+        class="fade-up bg-forge-dim2 border border-subtle overflow-hidden
+               transition-all duration-300 hover:border-[rgba(232,213,163,0.18)]"
+        style={`transition-delay: ${i * 0.08}s`}
+      >
+        <!-- Photo placeholder -->
+        <div class="aspect-square bg-gradient-to-br from-[#151514] to-[#0e0e0d] flex items-center justify-center">
+          <div class="w-[58%] aspect-square rounded-full
+                      bg-gradient-to-br from-[rgba(232,213,163,0.08)] to-[rgba(196,96,26,0.08)]
+                      border border-subtle flex items-center justify-center
+                      font-syne font-extrabold text-[20px] sm:text-[28px] text-[rgba(232,213,163,0.25)]">
+            {f.initials}
+          </div>
+        </div>
+        <!-- Info -->
+        <div class="p-5 sm:p-6 border-t border-subtle">
+          <div class="font-syne font-bold text-[15px] sm:text-[16px] mb-0.5">{f.name}</div>
+          <div class="text-[10px] tracking-[0.16em] uppercase text-forge-accent mb-2.5">{f.role}</div>
+          <p class="text-[11px] leading-[1.7] text-[rgba(200,195,184,0.42)]">{f.bio}</p>
+        </div>
+      </div>
+    ))}
+  </div>
+
+  <!-- Advisors -->
+  <h3 class="fade-up font-syne font-bold text-[22px] sm:text-[26px] mt-16 sm:mt-20 mb-7">
+    Advisors
+  </h3>
+  <div class="grid grid-cols-1 sm:grid-cols-3 gap-[2px]">
+    {advisors.map((a, i) => (
+      <div
+        class="fade-up flex gap-3.5 items-start bg-forge-dim2 border border-subtle p-6
+               transition-all duration-300 hover:border-[rgba(232,213,163,0.15)]"
+        style={`transition-delay: ${i * 0.08}s`}
+      >
+        <div class="w-[42px] h-[42px] rounded-full shrink-0
+                    bg-gradient-to-br from-[rgba(232,213,163,0.1)] to-[rgba(196,96,26,0.08)]
+                    border border-subtle flex items-center justify-center
+                    font-syne font-bold text-[13px] text-[rgba(232,213,163,0.35)]">
+          {a.initials}
+        </div>
+        <div>
+          <div class="font-syne font-bold text-[14px] mb-0.5">{a.name}</div>
+          <div class="text-[10px] tracking-[0.14em] uppercase text-forge-accent mb-1.5">{a.role}</div>
+          <div class="text-[10px] leading-[1.6] text-[rgba(200,195,184,0.4)]">{a.prev}</div>
+        </div>
+      </div>
+    ))}
+  </div>
+</section>
+
+<style>
+  .section-label {
+    font-size: 10px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: #e8d5a3;
+    margin-bottom: 48px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .section-label::after {
+    content: '';
+    flex: 1;
+    max-width: 60px;
+    height: 1px;
+    background: var(--border);
+  }
+</style>

@@ -1,0 +1,405 @@
+---
+---
+
+<!-- Project Modal -->
+<div class="modal-overlay" id="projectModal" role="dialog" aria-modal="true" aria-label="Project details">
+  <div class="modal-box">
+    <button class="absolute top-5 right-5 bg-transparent border-none text-forge-cream text-[20px] cursor-pointer leading-none transition-colors duration-200 hover:text-forge-accent" onclick="closeModal('projectModal')" aria-label="Close">✕</button>
+    <div id="projectModalBody"></div>
+  </div>
+</div>
+
+<!-- Blog Modal -->
+<div class="modal-overlay" id="blogModal" role="dialog" aria-modal="true" aria-label="Blog post">
+  <div class="modal-box">
+    <button class="absolute top-5 right-5 bg-transparent border-none text-forge-cream text-[20px] cursor-pointer leading-none transition-colors duration-200 hover:text-forge-accent" onclick="closeModal('blogModal')" aria-label="Close">✕</button>
+    <div id="blogModalBody"></div>
+  </div>
+</div>
+
+<!-- Role Modal -->
+<div class="modal-overlay" id="roleModal" role="dialog" aria-modal="true" aria-label="Job description">
+  <div class="modal-box">
+    <button class="absolute top-5 right-5 bg-transparent border-none text-forge-cream text-[20px] cursor-pointer leading-none transition-colors duration-200 hover:text-forge-accent" onclick="closeModal('roleModal')" aria-label="Close">✕</button>
+    <div id="roleModalBody"></div>
+  </div>
+</div>
+
+<!-- Apply Modal -->
+<div class="modal-overlay" id="applyModal" role="dialog" aria-modal="true" aria-label="Apply">
+  <div class="modal-box">
+    <button class="absolute top-5 right-5 bg-transparent border-none text-forge-cream text-[20px] cursor-pointer leading-none transition-colors duration-200 hover:text-forge-accent" onclick="closeModal('applyModal')" aria-label="Close">✕</button>
+    <div id="applyModalBody"></div>
+  </div>
+</div>
+
+<style>
+  /* Modal-specific typography */
+  .modal-tag {
+    display: inline-block;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #e8d5a3;
+    border: 1px solid rgba(232,213,163,0.3);
+    padding: 4px 9px;
+    margin-bottom: 18px;
+  }
+  .modal-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: clamp(22px, 5vw, 38px);
+    letter-spacing: -0.02em;
+    margin-bottom: 5px;
+  }
+  .modal-sub {
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(200,195,184,0.4);
+    margin-bottom: 28px;
+  }
+  .modal-body p { margin-bottom: 14px; font-size: 13px; line-height: 1.9; color: #c8c3b8; }
+  .modal-metrics {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    margin: 28px 0;
+  }
+  @media (max-width: 480px) {
+    .modal-metrics { grid-template-columns: repeat(2, 1fr); }
+  }
+  .modal-metric {
+    background: #1a1a18;
+    border: 1px solid rgba(240,237,230,0.08);
+    padding: 20px 16px;
+  }
+  .modal-metric-val {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 26px;
+    color: #e8d5a3;
+    display: block;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .modal-metric-label {
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: rgba(200,195,184,0.4);
+  }
+  .modal-chains { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 20px; }
+  .modal-chain {
+    font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: rgba(200,195,184,0.5); border: 1px solid rgba(240,237,230,0.08); padding: 5px 10px;
+  }
+  /* Blog modal */
+  .blog-modal-body { font-size: 13px; line-height: 2; color: #c8c3b8; }
+  .blog-modal-body h3 {
+    font-family: 'Syne', sans-serif; font-size: 18px; font-weight: 700;
+    margin: 24px 0 10px; color: #f0ede6;
+  }
+  .blog-modal-body p { margin-bottom: 14px; }
+  /* Role modal */
+  .role-modal-body { font-size: 13px; line-height: 1.9; color: #c8c3b8; }
+  .role-modal-body p { margin-bottom: 14px; }
+  .role-modal-body h3 {
+    font-family: 'Syne', sans-serif; font-size: 16px; font-weight: 700;
+    color: #e8d5a3; margin: 24px 0 10px;
+  }
+  .role-modal-body ul { margin-left: 16px; margin-bottom: 14px; }
+  .role-modal-body li { margin-bottom: 6px; font-size: 12px; line-height: 1.7; color: rgba(200,195,184,0.75); }
+  /* Apply form */
+  .apply-form { display: flex; flex-direction: column; gap: 14px; }
+  .form-group { display: flex; flex-direction: column; gap: 5px; }
+  .form-label { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(200,195,184,0.5); }
+  .form-input {
+    background: #1a1a18; border: 1px solid rgba(240,237,230,0.08);
+    color: #f0ede6; padding: 11px 14px;
+    font-family: 'DM Mono', monospace; font-size: 13px;
+    outline: none; transition: border-color 0.2s; width: 100%;
+  }
+  .form-input:focus { border-color: rgba(232,213,163,0.4); }
+  textarea.form-input { resize: vertical; min-height: 90px; }
+  select.form-input { cursor: pointer; }
+  select.form-input option { background: #1a1a18; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  @media (max-width: 520px) { .form-row { grid-template-columns: 1fr; } }
+  .form-submit {
+    font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.14em;
+    text-transform: uppercase; color: #080808; background: #e8d5a3;
+    padding: 13px 26px; border: 1px solid #e8d5a3; cursor: pointer;
+    transition: background 0.2s, color 0.2s; margin-top: 6px;
+  }
+  .form-submit:hover { background: transparent; color: #e8d5a3; }
+  .form-success { display: none; text-align: center; padding: 40px 20px; }
+  .form-success-icon { font-size: 44px; margin-bottom: 14px; }
+  .form-success-title {
+    font-family: 'Syne', sans-serif; font-weight: 700; font-size: 24px; margin-bottom: 9px;
+  }
+  .form-success-sub { font-size: 12px; color: rgba(200,195,184,0.6); line-height: 1.7; }
+  .role-cta { margin-top: 28px; display: flex; gap: 10px; flex-wrap: wrap; }
+  .btn-p {
+    font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.14em;
+    text-transform: uppercase; color: #080808; background: #e8d5a3;
+    padding: 12px 22px; border: 1px solid #e8d5a3; cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+  }
+  .btn-p:hover { background: transparent; color: #e8d5a3; }
+  .btn-g {
+    font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.14em;
+    text-transform: uppercase; color: rgba(200,195,184,0.7); background: transparent;
+    padding: 12px 22px; border: 1px solid rgba(240,237,230,0.08); cursor: pointer;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .btn-g:hover { border-color: #e8d5a3; color: #e8d5a3; }
+</style>
+
+<script>
+import type { Project, BlogPost, Role } from '../data';
+
+// ── Data (duplicated client-side for modal rendering) ──────────────────────
+const projects: Project[] = [
+  { tag:'DeFi · Mainnet', name:'Aethon Protocol', chain:'Ethereum · Arbitrum', status:'Live on Mainnet', raised:'$12M Seed', desc:'Aethon Protocol is intent-based trading infrastructure enabling gasless, cross-chain swaps with sub-second finality using ZK settlement proofs. Founded in early 2024, Aethon solves the fragmented liquidity problem across EVM chains by abstracting gas, bridging, and routing into a single user intent.', desc2:'Solvers compete to fulfill user intents off-chain, with settlement verified on-chain via Groth16 proofs. The protocol is chain-agnostic and currently live on Ethereum mainnet and Arbitrum, with Base and Optimism integrations shipping in Q2 2025.', metrics:[{val:'$2.1B',label:'Volume (30d)'},{val:'420K',label:'Unique Wallets'},{val:'0',label:'Exploits'}], chains:['Ethereum','Arbitrum','Base (Q2)','Optimism (Q2)'] },
+  { tag:'Infrastructure · L2', name:'NullGate', chain:'zkEVM · Polygon', status:'Public Testnet', raised:'$8M Seed', desc:'NullGate is a zero-knowledge VM for privacy-preserving smart contracts. It enables confidential DeFi — private balances, hidden transaction graphs, sealed auctions — without sacrificing composability with existing EVM tooling.', desc2:'Built on a custom Plonky3-based proof system, NullGate achieves 10ms proof generation for common operations on commodity hardware. The VM is EVM-compatible at the opcode level, allowing existing Solidity contracts to be deployed with zero code changes.', metrics:[{val:'10ms',label:'Avg Proof Time'},{val:'99.9%',label:'EVM Compat.'},{val:'3',label:'Audit Passes'}], chains:['Polygon zkEVM','Ethereum L1 (DA)','Eigen DA'] },
+  { tag:'RWA · Tokenization', name:'VaultMesh', chain:'Base · Solana', status:'Private Beta', raised:'$15M Series A', desc:'VaultMesh is an institutional-grade tokenization platform for real-world assets with built-in compliance rails and automated on-chain settlement. The platform handles the full lifecycle: legal structuring, token issuance, transfer restrictions, dividend distribution, and secondary market liquidity.', desc2:'VaultMesh works with regulated custodians and law firms to ensure tokens are legally compliant in 40+ jurisdictions. Current assets under management include tokenized US Treasuries, private credit, and commercial real estate.', metrics:[{val:'$840M',label:'Assets Tokenized'},{val:'40+',label:'Jurisdictions'},{val:'18',label:'Institutional Clients'}], chains:['Base','Solana','Aptos','Polygon'] },
+  { tag:'AI × Web3 · Beta', name:'Synapse Node', chain:'Cosmos · IBC', status:'Open Beta', raised:'$6M Seed', desc:'Synapse Node is a decentralized inference network for running AI models on-chain. Compute providers stake tokens to offer GPU capacity; requesters pay per-inference with cryptographic proofs of execution verifying outputs.', desc2:'The network currently supports major open-source models including Llama, Mistral, and Stable Diffusion variants. An on-chain reputation system penalizes incorrect outputs via optimistic fraud proofs, ensuring result integrity without requiring every computation to be verified.', metrics:[{val:'12K',label:'Active GPUs'},{val:'$0.0002',label:'Per Inference'},{val:'99.7%',label:'Uptime'}], chains:['Cosmos Hub','Osmosis IBC','Ethereum (settlement)'] },
+  { tag:'Identity · Protocol', name:'Cerid', chain:'Ethereum · StarkNet', status:'Mainnet Alpha', raised:'$9M Seed', desc:'Cerid is a self-sovereign identity layer with selective disclosure ZK proofs. Users prove attributes about themselves (age, nationality, accreditation status) without revealing the underlying data, enabling compliant DeFi without KYC data leakage.', desc2:'Cerid integrates with government-issued digital IDs in 12 countries and generates Groth16 proofs client-side in under 2 seconds. DeFi protocols can require proof of non-US personhood or investor accreditation with one line of Solidity.', metrics:[{val:'2s',label:'Client-side Proof'},{val:'12',label:'Gov ID Integrations'},{val:'280K',label:'Verified Users'}], chains:['Ethereum','StarkNet','Optimism','Polygon'] },
+  { tag:'Gaming · Live', name:'Ironforge Arena', chain:'Immutable · Ronin', status:'Live · Season 3', raised:'$11M Seed', desc:'Ironforge Arena is a fully on-chain strategy game with player-owned economies. Every unit, territory, and resource is an NFT. The game economy is governed by token holders, with an in-game DAO managing seasonal rules and prize pools.', desc2:'The game processes 4M+ transactions per day on Immutable zkEVM, with gas costs abstracted entirely from players. A peer-to-peer marketplace allows real-money trading of in-game assets, with $8M GMV in the first quarter alone.', metrics:[{val:'$8M',label:'Q1 GMV'},{val:'200K',label:'Active Wallets'},{val:'4M+',label:'Daily Transactions'}], chains:['Immutable zkEVM','Ronin','Ethereum (NFT bridging)'] },
+];
+
+const blogs: BlogPost[] = [
+  { cat:'Research', date:'Mar 2025', imgText:'ZK', title:'Why zkVMs Will Eat Every Blockchain Runtime', excerpt:'...', body:`<p>The transition from EVM to zkVM is not incremental — it is a regime change. Here's why we believe every major chain will migrate within five years, and what it means for developers building today.</p><h3>The EVM's Original Sin</h3><p>The Ethereum Virtual Machine was designed for correctness and determinism, not for provability. Every opcode was chosen without considering whether a ZK proof could be generated over it efficiently. KECCAK256 is one of the most expensive operations to prove in a circuit — yet it's used everywhere in Ethereum's state trie.</p><p>zkVMs solve this by either redesigning the instruction set or by building massively parallelized proving infrastructure that can handle the EVM's idiosyncrasies at scale. Both approaches are valid; the winner will be determined by developer adoption, not technical elegance.</p><h3>Why This Time Is Different</h3><p>Previous generations of ZK technology required hand-writing circuits for every computation. Modern zkVMs like SP1, RISC Zero, and Jolt allow any program compiled to RISC-V or WASM to be proven automatically. The proving overhead has fallen from 10,000× to under 100× in three years, and it's still falling.</p>` },
+  { cat:'Thesis', date:'Feb 2025', imgText:'AI', title:'The Autonomous Agent Economy: Our Bet on On-Chain AI', excerpt:'...', body:`<p>AI agents need three things to operate autonomously: money, memory, and verifiable compute. Today, all three are broken. We explain our thesis for why blockchain is the missing infrastructure layer.</p><h3>The Problem With Centralized AI</h3><p>Current AI systems operate within walled gardens. An agent running on one provider's infrastructure cannot trustlessly transact with an agent running on another's. There is no standard for agent-to-agent payment, no verifiable record of what an agent has done, and no way to audit whether an AI actually executed the computation it claims.</p><p>Blockchain solves all three. On-chain wallets give agents a persistent, self-sovereign identity and payment rail. Smart contracts provide verifiable, auditable execution records. Decentralized compute networks ensure inference results can be cryptographically proven.</p><h3>What We're Backing</h3><p>We're investing at the intersection of AI and crypto in three areas: agent frameworks with native wallet and payment rails, decentralized inference networks with proof-of-computation, and on-chain memory and context storage primitives.</p>` },
+  { cat:'Market Analysis', date:'Jan 2025', imgText:'RWA', title:'The $500T Opportunity: Tokenizing Real-World Assets at Scale', excerpt:'...', body:`<p>Real estate, credit, commodities, and equities are all moving on-chain. We analyze the $500 trillion opportunity and the infrastructure stack needed to make institutional-grade tokenization a reality.</p><h3>Why Now</h3><p>Three macro forces have converged: regulatory clarity in major jurisdictions, the maturation of on-chain compliance tooling, and a generation of institutional investors who have grown comfortable holding digital assets.</p><p>BlackRock's BUIDL fund crossed $500M in AUM within months of launch. Franklin Templeton's money market fund is live on Stellar. These aren't experiments — they're the opening moves of a multi-decade transition.</p><h3>The Infrastructure Gap</h3><p>The biggest bottleneck isn't regulatory or institutional demand — it's infrastructure. Tokenization platforms need to handle legal wrapper creation, token issuance with embedded transfer restrictions, KYC/AML at the wallet level, and secondary market liquidity provisioning. VaultMesh, our portfolio company, is building this full stack.</p>` },
+];
+
+const roles: Role[] = [
+  { title:'Senior Protocol Engineer', dept:'Engineering', location:'Remote', type:'Full-time', comp:'$180K–$240K + tokens', desc:'We are looking for a senior engineer to work directly with our portfolio companies on protocol design, smart contract development, and L2 infrastructure. You will be embedded in teams across 2–3 portfolio companies at a time.', reqs:['5+ years of software engineering, 2+ years in smart contract or protocol development','Deep knowledge of EVM, Solidity, and the L2 ecosystem','Experience with Rust, Go, or systems-level languages','Understanding of MEV, AMM design, or bridging mechanisms','Ability to read and critique protocol whitepapers'], nice:['Contributions to open-source blockchain projects','Experience with ZK circuits or proving systems','Previous startup experience'] },
+  { title:'ZK Research Engineer', dept:'Research', location:'Remote', type:'Full-time', comp:'$200K–$280K + significant tokens', desc:'We are hiring a ZK research engineer to work on the core cryptographic infrastructure of our zkVM and identity portfolio companies. This is a deeply technical role requiring both theoretical knowledge and practical implementation skills.', reqs:['Strong background in ZK-SNARKs, STARKs, or related cryptography','Experience implementing ZK circuits in circom, gnark, or halo2','Ability to read and implement academic cryptography papers','Proficiency in Rust or C++ for performance-critical code'], nice:['Published research in cryptography or distributed systems','Contributions to ZK-focused open source projects (arkworks, bellman)','Experience with recursive proof systems'] },
+  { title:'DeFi Product Manager', dept:'Product', location:'Remote / NYC', type:'Full-time', comp:'$140K–$180K + tokens', desc:'We need a product manager with deep DeFi experience to work across our trading, lending, and liquidity portfolio companies. You will define product strategy, write specifications, and work directly with engineering teams to ship.', reqs:['3+ years of product management, at least 1 year in DeFi or crypto','Deep knowledge of DEX mechanics, lending protocols, and DeFi UX patterns','Ability to write clear, technical product specifications','Comfortable with SQL, Dune Analytics, or on-chain data tools'], nice:['Experience at a leading DeFi protocol (Uniswap, Aave, Compound)','Previous experience as a trader or market participant in DeFi'] },
+  { title:'Venture Analyst — Web3', dept:'Investing', location:'NYC / SF', type:'Full-time', comp:'$100K–$140K + carry + tokens', desc:'Join the Moonshot Forge investment team to source, evaluate, and support early-stage Web3 companies. You will write investment memos, conduct technical due diligence, and work closely with portfolio companies post-investment.', reqs:['2+ years in venture capital, investment banking, or a relevant operational role','Genuine passion for and knowledge of the blockchain/Web3 space','Ability to read and evaluate smart contracts and protocol documentation','Strong written communication — you will write a lot of memos'], nice:['Technical background in computer science or engineering','Previously founded or early at a crypto startup'] },
+  { title:'Smart Contract Security Auditor', dept:'Security', location:'Remote', type:'Full-time', comp:'$160K–$220K + tokens', desc:'Our in-house security team audits every portfolio company before mainnet launch. We are looking for an experienced auditor to help maintain our zero-exploit track record.', reqs:['3+ years of smart contract security experience','Demonstrated track record of finding critical vulnerabilities in production code','Expert knowledge of common EVM attack vectors: reentrancy, flash loans, oracle manipulation','Familiarity with formal verification tools','Ability to write clear, actionable audit reports'], nice:['Bug bounty track record on Immunefi or equivalent','Experience with non-EVM chains (Solana, CosmWasm, Move)'] },
+  { title:'Head of Ecosystem Growth', dept:'Growth', location:'Remote / Global', type:'Full-time', comp:'$130K–$170K + tokens', desc:'We need a connector and community builder to grow the Moonshot Forge ecosystem — driving founder applications, LP relationships, and protocol partnerships across our global network.', reqs:['5+ years in growth, partnerships, or ecosystem development','Existing relationships with founders, VCs, and protocol teams in Web3','Excellent public speaker and writer','Proven ability to build community from scratch'], nice:['Experience running a DAO or decentralized community','Previous work at a major L1 or L2 foundation'] },
+];
+
+// ── Modal helpers ──────────────────────────────────────────────────────────
+function openModal(id: string) {
+  document.getElementById(id)!.classList.add('open');
+  document.body.classList.add('no-scroll');
+}
+(window as any).closeModal = function(id: string) {
+  document.getElementById(id)!.classList.remove('open');
+  document.body.classList.remove('no-scroll');
+};
+
+// Close on overlay click
+['projectModal','blogModal','roleModal','applyModal'].forEach(id => {
+  document.getElementById(id)!.addEventListener('click', (e: Event) => {
+    if (e.target === document.getElementById(id)) (window as any).closeModal(id);
+  });
+});
+
+// ESC key
+document.addEventListener('keydown', (e: KeyboardEvent) => {
+  if (e.key === 'Escape') {
+    ['projectModal','blogModal','roleModal','applyModal'].forEach(id => (window as any).closeModal(id));
+  }
+});
+
+// ── Project cards ──────────────────────────────────────────────────────────
+document.querySelectorAll<HTMLButtonElement>('[data-project]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const i = parseInt(btn.dataset.project!);
+    const p = projects[i];
+    document.getElementById('projectModalBody')!.innerHTML = `
+      <span class="modal-tag">${p.tag}</span>
+      <div class="modal-title">${p.name}</div>
+      <div class="modal-sub">${p.status} · ${p.raised}</div>
+      <div class="modal-body"><p>${p.desc}</p><p>${p.desc2}</p></div>
+      <div class="modal-metrics">
+        ${p.metrics.map(m => `<div class="modal-metric"><span class="modal-metric-val">${m.val}</span><span class="modal-metric-label">${m.label}</span></div>`).join('')}
+      </div>
+      <div class="modal-chains">${p.chains.map(c => `<span class="modal-chain">${c}</span>`).join('')}</div>`;
+    openModal('projectModal');
+  });
+});
+
+// ── Blog cards ─────────────────────────────────────────────────────────────
+document.querySelectorAll<HTMLButtonElement>('[data-blog]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const i = parseInt(btn.dataset.blog!);
+    const b = blogs[i];
+    document.getElementById('blogModalBody')!.innerHTML = `
+      <div style="display:flex;gap:10px;align-items:center;margin-bottom:18px;flex-wrap:wrap;">
+        <span class="modal-tag">${b.cat}</span>
+        <span style="font-size:10px;letter-spacing:.14em;color:rgba(200,195,184,.4)">${b.date}</span>
+      </div>
+      <div class="modal-title" style="font-size:clamp(20px,4vw,32px)">${b.title}</div>
+      <div class="blog-modal-body" style="margin-top:22px">${b.body}</div>`;
+    openModal('blogModal');
+  });
+});
+
+// ── Role cards ─────────────────────────────────────────────────────────────
+document.querySelectorAll<HTMLButtonElement>('[data-role]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const i = parseInt(btn.dataset.role!);
+    const r = roles[i];
+    document.getElementById('roleModalBody')!.innerHTML = `
+      <span class="modal-tag">${r.dept}</span>
+      <div class="modal-title">${r.title}</div>
+      <div class="modal-sub">${r.location} · ${r.type} · ${r.comp}</div>
+      <div class="role-modal-body">
+        <p>${r.desc}</p>
+        <h3>Requirements</h3>
+        <ul>${r.reqs.map(x => `<li>${x}</li>`).join('')}</ul>
+        <h3>Nice to Have</h3>
+        <ul>${r.nice.map(x => `<li>${x}</li>`).join('')}</ul>
+        <div class="role-cta">
+          <button class="btn-p" onclick="(window as any).closeModal('roleModal'); document.dispatchEvent(new CustomEvent('open-apply', { detail: { type: 'career', roleTitle: '${r.title.replace(/'/g, "\\'")}' } }))">Apply for this Role →</button>
+          <button class="btn-g" onclick="(window as any).closeModal('roleModal')">Back</button>
+        </div>
+      </div>`;
+    openModal('roleModal');
+  });
+});
+
+// ── Apply cards & global event ─────────────────────────────────────────────
+document.querySelectorAll<HTMLButtonElement>('[data-apply]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    openApplyModal(btn.dataset.apply!, '');
+  });
+});
+
+document.addEventListener('open-apply', (e: Event) => {
+  const { type, roleTitle } = (e as CustomEvent).detail;
+  openApplyModal(type, roleTitle || '');
+});
+
+function openApplyModal(type: string, roleTitle: string) {
+  const titles: Record<string,string> = { founder:'Founder Program', residency:'Builder Residency', lp:'LP Access', partner:'Protocol Partnership', career: roleTitle };
+  const subtitles: Record<string,string> = { founder:'Pre-seed & Seed stage teams', residency:'12-week intensive for early builders', lp:'Institutional investor inquiry', partner:'Established protocols & ecosystems', career:'Join the Moonshot Forge team' };
+  document.getElementById('applyModalBody')!.innerHTML = `
+    <span class="modal-tag">Apply</span>
+    <div class="modal-title" style="font-size:clamp(20px,4vw,30px)">${titles[type] || 'Apply'}</div>
+    <div class="modal-sub">${subtitles[type] || ''}</div>
+    <div style="margin-top:24px">
+      <div class="apply-form" id="applyFormInner">${getApplyFields(type, roleTitle)}<button class="form-submit" id="applySubmitBtn">Submit Application →</button></div>
+      <div class="form-success" id="applySuccess">
+        <div class="form-success-icon">✓</div>
+        <div class="form-success-title">Application Received</div>
+        <p class="form-success-sub">We review every application carefully. Expect to hear from us within 5 business days.</p>
+      </div>
+    </div>`;
+
+  document.getElementById('applySubmitBtn')!.addEventListener('click', () => {
+    document.getElementById('applyFormInner')!.style.display = 'none';
+    document.getElementById('applySuccess')!.style.display = 'block';
+    setTimeout(() => {
+      (window as any).closeModal('applyModal');
+      document.getElementById('applyFormInner')!.style.display = '';
+      document.getElementById('applySuccess')!.style.display = 'none';
+      showToast();
+    }, 3200);
+  });
+
+  openModal('applyModal');
+}
+
+function getApplyFields(type: string, roleTitle: string): string {
+  if (type === 'career') return `
+    <div class="form-group"><label class="form-label">Role</label><input class="form-input" value="${roleTitle}" readonly/></div>
+    <div class="form-row">
+      <div class="form-group"><label class="form-label">Full Name</label><input class="form-input" placeholder="Your name"/></div>
+      <div class="form-group"><label class="form-label">Email</label><input class="form-input" type="email" placeholder="you@example.com"/></div>
+    </div>
+    <div class="form-group"><label class="form-label">LinkedIn / Portfolio</label><input class="form-input" placeholder="https://"/></div>
+    <div class="form-group"><label class="form-label">Why Moonshot Forge?</label><textarea class="form-input" placeholder="Tell us why you want to work here..."></textarea></div>
+    <div class="form-group"><label class="form-label">Relevant Experience</label><textarea class="form-input" placeholder="Describe your most relevant experience..."></textarea></div>`;
+  if (type === 'founder') return `
+    <div class="form-row">
+      <div class="form-group"><label class="form-label">Full Name</label><input class="form-input" placeholder="Your name"/></div>
+      <div class="form-group"><label class="form-label">Email</label><input class="form-input" type="email" placeholder="you@example.com"/></div>
+    </div>
+    <div class="form-row">
+      <div class="form-group"><label class="form-label">Company / Project</label><input class="form-input" placeholder="Project name"/></div>
+      <div class="form-group"><label class="form-label">Website / Deck</label><input class="form-input" placeholder="https://"/></div>
+    </div>
+    <div class="form-row">
+      <div class="form-group"><label class="form-label">Stage</label><select class="form-input"><option>Idea stage</option><option>Prototype</option><option>Testnet</option><option>Mainnet</option></select></div>
+      <div class="form-group"><label class="form-label">Target Raise</label><input class="form-input" placeholder="e.g. $2M"/></div>
+    </div>
+    <div class="form-group"><label class="form-label">What are you building?</label><textarea class="form-input" placeholder="Describe your project in 2–3 sentences..."></textarea></div>
+    <div class="form-group"><label class="form-label">What problem does it solve?</label><textarea class="form-input" placeholder="Who is the user and what pain do you address?"></textarea></div>
+    <div class="form-group"><label class="form-label">Team background</label><textarea class="form-input" placeholder="Who are the founders and what have you built before?"></textarea></div>`;
+  if (type === 'residency') return `
+    <div class="form-row">
+      <div class="form-group"><label class="form-label">Full Name</label><input class="form-input" placeholder="Your name"/></div>
+      <div class="form-group"><label class="form-label">Email</label><input class="form-input" type="email" placeholder="you@example.com"/></div>
+    </div>
+    <div class="form-group"><label class="form-label">Your Idea</label><textarea class="form-input" placeholder="What do you want to build during the residency?"></textarea></div>
+    <div class="form-group"><label class="form-label">Background</label><textarea class="form-input" placeholder="Tell us about your technical and crypto background..."></textarea></div>
+    <div class="form-group"><label class="form-label">Why this cohort?</label><textarea class="form-input" placeholder="What makes now the right time?"></textarea></div>
+    <div class="form-group"><label class="form-label">GitHub / Portfolio</label><input class="form-input" placeholder="https://"/></div>`;
+  if (type === 'lp') return `
+    <div class="form-row">
+      <div class="form-group"><label class="form-label">Full Name</label><input class="form-input" placeholder="Your name"/></div>
+      <div class="form-group"><label class="form-label">Email</label><input class="form-input" type="email" placeholder="you@example.com"/></div>
+    </div>
+    <div class="form-group"><label class="form-label">Firm / Organization</label><input class="form-input" placeholder="Your firm name"/></div>
+    <div class="form-group"><label class="form-label">Capital Available</label><select class="form-input"><option>$2M – $10M</option><option>$10M – $50M</option><option>$50M – $100M</option><option>$100M+</option></select></div>
+    <div class="form-group"><label class="form-label">Areas of interest</label><textarea class="form-input" placeholder="What sectors or deal types interest you most?"></textarea></div>
+    <div class="form-group"><label class="form-label">Questions for the team</label><textarea class="form-input" placeholder="Any questions about the fund or our strategy?"></textarea></div>`;
+  if (type === 'partner') return `
+    <div class="form-row">
+      <div class="form-group"><label class="form-label">Full Name</label><input class="form-input" placeholder="Your name"/></div>
+      <div class="form-group"><label class="form-label">Email</label><input class="form-input" type="email" placeholder="you@example.com"/></div>
+    </div>
+    <div class="form-row">
+      <div class="form-group"><label class="form-label">Protocol / Project</label><input class="form-input" placeholder="Protocol name"/></div>
+      <div class="form-group"><label class="form-label">Chain</label><input class="form-input" placeholder="e.g. Ethereum, Solana..."/></div>
+    </div>
+    <div class="form-group"><label class="form-label">Partnership Goal</label><textarea class="form-input" placeholder="What kind of partnership are you seeking?"></textarea></div>
+    <div class="form-group"><label class="form-label">Website / Docs</label><input class="form-input" placeholder="https://"/></div>`;
+  return '';
+}
+
+function showToast() {
+  const t = document.getElementById('toast')!;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 4000);
+}
+
+// ── Cursor (desktop only) ──────────────────────────────────────────────────
+if (window.matchMedia('(pointer: fine)').matches) {
+  const cursor = document.getElementById('cursor')!;
+  const ring   = document.getElementById('cursorRing')!;
+  let mx = 0, my = 0, rx = 0, ry = 0;
+  document.addEventListener('mousemove', (e: MouseEvent) => {
+    mx = e.clientX; my = e.clientY;
+    cursor.style.left = mx + 'px'; cursor.style.top = my + 'px';
+  });
+  (function anim() {
+    rx += (mx - rx) * 0.1; ry += (my - ry) * 0.1;
+    ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
+    requestAnimationFrame(anim);
+  })();
+  document.querySelectorAll('a, button, [data-project], [data-blog], [data-role], [data-apply], .stat-box').forEach(el => {
+    el.addEventListener('mouseenter', () => { cursor.classList.add('big'); ring.classList.add('big'); });
+    el.addEventListener('mouseleave', () => { cursor.classList.remove('big'); ring.classList.remove('big'); });
+  });
+}
+
+// ── Scroll reveal ──────────────────────────────────────────────────────────
+const revealObserver = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.08 });
+document.querySelectorAll('.fade-up').forEach(el => revealObserver.observe(el));
+</script>

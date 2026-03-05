@@ -1,0 +1,108 @@
+---
+const stats = [
+  { num: '$240M', label: 'Capital Deployed' },
+  { num: '34',    label: 'Portfolio Projects' },
+  { num: '8',     label: 'Chains Supported' },
+  { num: '12×',   label: 'Avg. Return' },
+];
+
+const values = [
+  {
+    num: '01',
+    title: 'Conviction over consensus',
+    desc: 'We take asymmetric bets before the market validates them. Contrarian theses built on fundamentals, not hype cycles.',
+  },
+  {
+    num: '02',
+    title: 'Engineers first',
+    desc: "Every partner is a builder. We sit in architecture meetings, review PRs, and ship code alongside your team.",
+  },
+  {
+    num: '03',
+    title: 'Long-term alignment',
+    desc: "Our incentives are tied to yours. We don't flip positions. We hold through volatility and build through bear markets.",
+  },
+];
+---
+
+<section id="about" class="relative z-[1] bg-forge-black px-5 py-20 sm:px-8 sm:py-24 lg:px-[60px] lg:py-[120px]">
+  <div class="section-label fade-up">02 · About</div>
+
+  <div class="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-24 xl:gap-[100px]">
+    <!-- Left column -->
+    <div>
+      <h2 class="fade-up font-syne font-bold tracking-[-0.02em] leading-[1.1] text-[30px] sm:text-[38px] lg:text-[48px] xl:text-[54px]">
+        We don't just invest. We <span class="text-forge-accent">build</span> alongside you.
+      </h2>
+
+      <!-- Stats grid -->
+      <div class="fade-up grid grid-cols-2 gap-[2px] mt-10">
+        {stats.map(s => (
+          <div class="bg-forge-dim2 border border-subtle p-6 sm:p-7 transition-all duration-200 hover:border-[rgba(232,213,163,0.25)]">
+            <span class="font-syne font-extrabold text-[36px] sm:text-[40px] text-forge-accent leading-none block mb-1">
+              {s.num}
+            </span>
+            <span class="text-[10px] tracking-[0.18em] uppercase text-[rgba(200,195,184,0.5)]">
+              {s.label}
+            </span>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- Right column -->
+    <div>
+      <div class="fade-up text-[13px] leading-[1.9] text-forge-cream space-y-5">
+        <p>
+          Moonshot Forge is a full-stack venture studio specializing in the intersection
+          of bleeding-edge cryptographic systems and product-market fit. We embed our
+          team inside yours — from protocol architecture to go-to-market strategy.
+        </p>
+        <p>
+          Our model is simple: we take concentrated bets on paradigm-shifting ideas,
+          then provide the capital, engineering talent, and network to make them
+          inevitable. We're not tourists in Web3 — our founding partners have built,
+          shipped, and exited protocols across DeFi, NFT infrastructure, and L2 ecosystems.
+        </p>
+        <p>
+          Since 2024 we've invested across 8 blockchain networks and deployed over $240M
+          into 34 companies, with zero portfolio exploits and an average return multiple
+          of 12×.
+        </p>
+      </div>
+
+      <!-- Values -->
+      <div class="fade-up mt-10 border border-subtle">
+        {values.map(v => (
+          <div class="flex gap-4 items-start p-5 sm:p-6 border-b border-subtle last:border-b-0 transition-colors duration-200 hover:bg-forge-dim2">
+            <span class="font-syne font-extrabold text-[11px] text-forge-accent shrink-0 pt-0.5">{v.num}</span>
+            <div>
+              <div class="font-syne font-bold text-[14px] mb-1">{v.title}</div>
+              <div class="text-[11px] leading-[1.7] text-[rgba(200,195,184,0.5)]">{v.desc}</div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .section-label {
+    font-size: 10px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: #e8d5a3;
+    margin-bottom: 48px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .section-label::after {
+    content: '';
+    flex: 1;
+    max-width: 60px;
+    height: 1px;
+    background: var(--border);
+  }
+</style>

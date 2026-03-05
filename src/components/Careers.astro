@@ -1,0 +1,70 @@
+---
+import { roles } from '../data';
+---
+
+<section id="careers" class="relative z-[1] bg-forge-black px-5 py-20 sm:px-8 sm:py-24 lg:px-[60px] lg:py-[120px]">
+  <div class="section-label fade-up">08 · Careers</div>
+  <h2 class="fade-up font-syne font-bold tracking-[-0.02em] leading-[1.05]
+             text-[30px] sm:text-[38px] lg:text-[48px] xl:text-[54px] mb-6">
+    Open Roles
+  </h2>
+  <p class="fade-up text-[13px] leading-[1.9] text-forge-cream max-w-[560px] mb-12">
+    We're a small team with a big surface area. Every person at Moonshot Forge operates
+    at the frontier of what's technically possible. If you want to build things that
+    matter, we want to hear from you.
+  </p>
+
+  <div class="flex flex-col gap-[2px]">
+    {roles.map((r, i) => (
+      <button
+        class="role-card flex items-center justify-between gap-4 bg-forge-dim2 border border-subtle
+               p-6 sm:p-8 text-left cursor-pointer w-full
+               transition-all duration-300 hover:border-[rgba(232,213,163,0.2)]
+               fade-up"
+        style={`transition-delay: ${i * 0.06}s`}
+        data-role={i}
+        aria-label={`View ${r.title} job description`}
+      >
+        <div class="min-w-0">
+          <div class="font-syne font-bold text-[17px] sm:text-[19px] mb-2">{r.title}</div>
+          <div class="flex gap-2 flex-wrap">
+            <span class="text-[9px] tracking-[0.16em] uppercase text-forge-accent
+                         border border-[rgba(232,213,163,0.25)] px-2.5 py-1">
+              {r.dept}
+            </span>
+            <span class="text-[9px] tracking-[0.16em] uppercase text-[rgba(200,195,184,0.5)]
+                         border border-subtle px-2.5 py-1">
+              {r.location}
+            </span>
+            <span class="text-[9px] tracking-[0.16em] uppercase text-[rgba(200,195,184,0.5)]
+                         border border-subtle px-2.5 py-1">
+              {r.type}
+            </span>
+          </div>
+        </div>
+        <span class="text-forge-accent text-[19px] shrink-0 transition-transform duration-200 role-arrow">↗</span>
+      </button>
+    ))}
+  </div>
+</section>
+
+<style>
+  .section-label {
+    font-size: 10px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: #e8d5a3;
+    margin-bottom: 48px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .section-label::after {
+    content: '';
+    flex: 1;
+    max-width: 60px;
+    height: 1px;
+    background: var(--border);
+  }
+  .role-card:hover .role-arrow { transform: translate(4px, -4px); }
+</style>

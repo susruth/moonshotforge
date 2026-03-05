@@ -1,0 +1,74 @@
+---
+import { blogs } from '../data';
+---
+
+<section id="blog" class="relative z-[1] bg-forge-dim2 px-5 py-20 sm:px-8 sm:py-24 lg:px-[60px] lg:py-[120px]">
+  <div class="section-label fade-up">07 · Blog</div>
+  <h2 class="fade-up font-syne font-bold tracking-[-0.02em] leading-[1.05] mb-14
+             text-[30px] sm:text-[38px] lg:text-[48px] xl:text-[54px]">
+    From The Forge
+  </h2>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[2px]">
+    {blogs.map((b, i) => (
+      <button
+        class="blog-card bg-forge-black border border-subtle overflow-hidden text-left
+               cursor-pointer transition-all duration-300 hover:border-[rgba(232,213,163,0.2)]
+               fade-up w-full"
+        style={`transition-delay: ${i * 0.1}s`}
+        data-blog={i}
+        aria-label={`Read: ${b.title}`}
+      >
+        <!-- Image placeholder -->
+        <div class="relative aspect-[16/9] bg-gradient-to-br from-[#1a1a18] to-[#111]
+                    flex items-center justify-center overflow-hidden">
+          <span class="font-syne font-extrabold text-[rgba(232,213,163,0.06)] tracking-[-0.04em] uppercase
+                       text-[48px] sm:text-[56px] lg:text-[64px] select-none">
+            {b.imgText}
+          </span>
+          <div class="absolute bottom-0 left-0 right-0 h-[2px] bg-forge-accent opacity-35"></div>
+        </div>
+        <!-- Content -->
+        <div class="p-6 sm:p-7">
+          <div class="flex gap-2.5 items-center mb-3 flex-wrap">
+            <span class="text-[9px] tracking-wider3 uppercase text-forge-accent
+                         border border-[rgba(232,213,163,0.25)] px-2 py-1">
+              {b.cat}
+            </span>
+            <span class="text-[10px] text-[rgba(200,195,184,0.35)] tracking-[0.1em]">{b.date}</span>
+          </div>
+          <div class="font-syne font-bold text-[17px] leading-[1.25] mb-2.5 tracking-[-0.01em]">
+            {b.title}
+          </div>
+          <p class="text-[11px] leading-[1.75] text-[rgba(200,195,184,0.5)] mb-4">
+            {b.excerpt}
+          </p>
+          <span class="blog-arrow flex items-center gap-1.5 text-[10px] tracking-[0.16em] uppercase
+                       text-forge-accent transition-all duration-200">
+            Read article →
+          </span>
+        </div>
+      </button>
+    ))}
+  </div>
+</section>
+
+<style>
+  .section-label {
+    font-size: 10px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: #e8d5a3;
+    margin-bottom: 48px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .section-label::after {
+    content: '';
+    flex: 1;
+    max-width: 60px;
+    height: 1px;
+    background: var(--border);
+  }
+</style>

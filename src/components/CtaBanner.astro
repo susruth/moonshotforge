@@ -1,0 +1,44 @@
+---
+---
+
+<!-- CTA Banner -->
+<div class="relative z-[1] bg-forge-dim border-t border-b border-subtle
+            px-5 py-16 sm:px-8 sm:py-20 lg:px-[60px] lg:py-24
+            flex flex-col gap-8 overflow-hidden
+            sm:flex-row sm:items-center sm:justify-between">
+  <!-- Glow -->
+  <div class="absolute -left-48 top-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full pointer-events-none"
+       style="background: radial-gradient(circle, rgba(196,96,26,0.06) 0%, transparent 70%);"
+       aria-hidden="true"></div>
+
+  <h2 class="relative z-[1] font-syne font-extrabold tracking-[-0.02em] leading-none max-w-[600px]
+             text-[32px] sm:text-[44px] lg:text-[60px] xl:text-[68px]">
+    Ready to build something inevitable?
+  </h2>
+
+  <div class="relative z-[1] flex flex-col gap-3 w-full sm:w-auto sm:shrink-0">
+    <button
+      id="cta-founder-btn"
+      class="font-mono text-[11px] tracking-wider2 uppercase text-forge-black bg-forge-accent
+             px-7 py-3.5 border border-forge-accent cursor-pointer text-center
+             transition-all duration-200 hover:bg-transparent hover:text-forge-accent">
+      Apply to the Studio →
+    </button>
+    <button
+      id="cta-partner-btn"
+      class="font-mono text-[11px] tracking-wider2 uppercase text-forge-cream bg-transparent
+             px-7 py-3.5 border border-subtle cursor-pointer text-center
+             transition-all duration-200 hover:border-forge-accent hover:text-forge-accent">
+      Partner With Us →
+    </button>
+  </div>
+</div>
+
+<script>
+  document.getElementById('cta-founder-btn')!.addEventListener('click', () => {
+    document.dispatchEvent(new CustomEvent('open-apply', { detail: { type: 'founder' } }));
+  });
+  document.getElementById('cta-partner-btn')!.addEventListener('click', () => {
+    document.dispatchEvent(new CustomEvent('open-apply', { detail: { type: 'partner' } }));
+  });
+</script>

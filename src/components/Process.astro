@@ -1,0 +1,92 @@
+---
+const steps = [
+  {
+    num: '01',
+    name: 'Thesis-Led Sourcing',
+    desc: "We identify fundamental market gaps before they're obvious. Every bet is backed by a conviction thesis, not trend-chasing. We publish our investment theses publicly so founders know exactly what we're looking for.",
+  },
+  {
+    num: '02',
+    name: 'Embedded Building',
+    desc: "Our engineers, designers, and operators work inside your team for the first 6–12 months. We're co-founders, not advisors. We take board seats only when founders request it.",
+  },
+  {
+    num: '03',
+    name: 'Protocol Auditing',
+    desc: "Rigorous internal and third-party security audits before every mainnet launch. We maintain an in-house security team and partner with top audit firms. We've never had a portfolio exploit.",
+  },
+  {
+    num: '04',
+    name: 'Network Activation',
+    desc: 'Access to our network of 400+ protocols, exchanges, market makers, and institutional LPs for distribution from day one. We facilitate introductions, not just intros.',
+  },
+];
+---
+
+<section id="process" class="relative z-[1] bg-forge-black px-5 py-20 sm:px-8 sm:py-24 lg:px-[60px] lg:py-[120px]">
+  <div class="section-label fade-up">04 · Our Model</div>
+  <h2 class="fade-up font-syne font-bold tracking-[-0.02em] leading-[1.05] mb-14
+             text-[30px] sm:text-[38px] lg:text-[48px] xl:text-[54px]">
+    How We Build<br/>Moonshots
+  </h2>
+
+  <div class="process-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 border border-subtle">
+    {steps.map((s, i) => (
+      <div
+        class={`fade-up p-8 sm:p-10 process-item process-item-${i}
+               transition-colors duration-300 hover:bg-forge-dim2`}
+        style={`transition-delay: ${i * 0.1}s`}
+      >
+        <div class="font-syne font-extrabold text-[56px] sm:text-[60px] leading-none mb-4
+                    text-[rgba(232,213,163,0.06)] tracking-[-0.04em]">
+          {s.num}
+        </div>
+        <div class="font-syne font-bold text-[16px] mb-2.5">{s.name}</div>
+        <p class="text-[11px] leading-[1.8] text-[rgba(200,195,184,0.5)]">{s.desc}</p>
+      </div>
+    ))}
+  </div>
+</section>
+
+<style>
+  .section-label {
+    font-size: 10px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: #e8d5a3;
+    margin-bottom: 48px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .section-label::after {
+    content: '';
+    flex: 1;
+    max-width: 60px;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* Mobile: stack with bottom border on each except last */
+  .process-item {
+    border-bottom: 1px solid var(--border);
+  }
+  .process-item:last-child {
+    border-bottom: none;
+  }
+
+  /* Tablet (sm): 2-col grid — right border on odd, bottom on top row */
+  @media (min-width: 640px) and (max-width: 1023px) {
+    .process-item { border-bottom: none; border-right: none; }
+    .process-item-0 { border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .process-item-1 { border-bottom: 1px solid var(--border); }
+    .process-item-2 { border-right: 1px solid var(--border); }
+    .process-item-3 { border-right: none; }
+  }
+
+  /* Desktop (lg): 4-col row — right border on all but last */
+  @media (min-width: 1024px) {
+    .process-item { border-bottom: none; border-right: 1px solid var(--border); }
+    .process-item-3 { border-right: none; }
+  }
+</style>

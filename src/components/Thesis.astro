@@ -1,0 +1,82 @@
+---
+const theses = [
+  {
+    icon: '⛓️',
+    title: 'Cross-Chain Infrastructure',
+    desc: "The future is multi-chain. We back the protocols that make chains interoperable — messaging layers, bridge security, and unified liquidity primitives that don't compromise on trust assumptions.",
+    tags: ['IBC', 'CCTP', 'Intent Settlement', 'Bridges'],
+  },
+  {
+    icon: '🔐',
+    title: 'Zero-Knowledge Systems',
+    desc: 'ZK proofs are the endgame for blockchain scalability and privacy. We invest in zkVMs, proof systems, recursive proofs, and the application layer being built on top of them.',
+    tags: ['zkEVM', 'SNARKs', 'STARKs', 'Recursive Proofs'],
+  },
+  {
+    icon: '🤖',
+    title: 'On-Chain AI',
+    desc: 'AI agents need verifiable compute and persistent on-chain state. We back decentralized inference networks, agent frameworks, and the economic rails that allow AI to participate in DeFi.',
+    tags: ['Agent Frameworks', 'Verifiable Compute', 'DePIN'],
+  },
+  {
+    icon: '🏦',
+    title: 'Real World Asset Tokenization',
+    desc: 'The $500T real-world asset market is moving on-chain. We back the compliance rails, custody solutions, and market microstructure needed to make institutional-grade tokenization real.',
+    tags: ['RWA', 'Tokenized Securities', 'DeFi Compliance'],
+  },
+];
+---
+
+<section id="thesis" class="relative z-[1] bg-forge-dim2 px-5 py-20 sm:px-8 sm:py-24 lg:px-[60px] lg:py-[120px]">
+  <div class="section-label fade-up">05 · Investment Thesis</div>
+  <h2 class="fade-up font-syne font-bold tracking-[-0.02em] leading-[1.05]
+             text-[30px] sm:text-[38px] lg:text-[48px] xl:text-[54px] mb-4">
+    What We<br/>Believe In
+  </h2>
+  <p class="fade-up text-[13px] leading-[1.9] text-forge-cream max-w-[540px] mb-14">
+    Our thesis is built on first principles. We invest at the intersection of
+    cryptographic innovation and real-world utility.
+  </p>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-[2px]">
+    {theses.map((t, i) => (
+      <div
+        class="fade-up bg-forge-black border border-subtle p-9 sm:p-10
+               transition-all duration-300 hover:border-[rgba(232,213,163,0.2)]"
+        style={`transition-delay: ${i * 0.1}s`}
+      >
+        <div class="text-[22px] mb-4">{t.icon}</div>
+        <div class="font-syne font-bold text-[19px] mb-2.5">{t.title}</div>
+        <p class="text-[12px] leading-[1.8] text-[rgba(200,195,184,0.55)]">{t.desc}</p>
+        <div class="flex flex-wrap gap-[6px] mt-5">
+          {t.tags.map(tag => (
+            <span class="text-[9px] tracking-wider2 uppercase text-forge-accent
+                         border border-[rgba(232,213,163,0.2)] px-2 py-1">
+              {tag}
+            </span>
+          ))}
+        </div>
+      </div>
+    ))}
+  </div>
+</section>
+
+<style>
+  .section-label {
+    font-size: 10px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: #e8d5a3;
+    margin-bottom: 48px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .section-label::after {
+    content: '';
+    flex: 1;
+    max-width: 60px;
+    height: 1px;
+    background: var(--border);
+  }
+</style>
