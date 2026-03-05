@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="800" height="450">
   <defs>
-    <!-- Film grain pattern -->
+    <!-- Film grain patterns -->
     <pattern id="grain1" x="0" y="0" width="4" height="4" patternUnits="userSpaceOnUse">
       <circle cx="1" cy="1" r="0.4" fill="#e8d5a3" opacity="0.08"/>
       <circle cx="3" cy="3" r="0.3" fill="#080808" opacity="0.06"/>
@@ -11,151 +11,240 @@
       <circle cx="6" cy="2" r="0.3" fill="#e8d5a3" opacity="0.06"/>
       <circle cx="4" cy="6" r="0.4" fill="#080808" opacity="0.03"/>
     </pattern>
-    <!-- Vignette gradient -->
+    <!-- Vignette -->
     <radialGradient id="vignette1" cx="50%" cy="50%" r="60%">
       <stop offset="0%" stop-color="#080808" stop-opacity="0"/>
       <stop offset="70%" stop-color="#080808" stop-opacity="0.15"/>
       <stop offset="100%" stop-color="#080808" stop-opacity="0.55"/>
     </radialGradient>
-    <!-- Warm photo overlay -->
+    <!-- Warm overlay -->
     <linearGradient id="warmth1" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#c4601a" stop-opacity="0.08"/>
-      <stop offset="50%" stop-color="#e8d5a3" stop-opacity="0.05"/>
-      <stop offset="100%" stop-color="#c4601a" stop-opacity="0.1"/>
+      <stop offset="0%" stop-color="#c4601a" stop-opacity="0.06"/>
+      <stop offset="50%" stop-color="#e8d5a3" stop-opacity="0.04"/>
+      <stop offset="100%" stop-color="#c4601a" stop-opacity="0.08"/>
     </linearGradient>
-    <!-- Circuit glow -->
+    <!-- Glow filter -->
     <filter id="glow1">
-      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feGaussianBlur stdDeviation="2.5" result="blur"/>
       <feMerge>
         <feMergeNode in="blur"/>
         <feMergeNode in="SourceGraphic"/>
       </feMerge>
     </filter>
+    <filter id="softglow">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <!-- Dissolve gradient for EVM side -->
+    <linearGradient id="evmFade" x1="0.25" y1="0" x2="0.55" y2="0">
+      <stop offset="0%" stop-color="#c8c3b8" stop-opacity="0.2"/>
+      <stop offset="60%" stop-color="#c8c3b8" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="#c8c3b8" stop-opacity="0"/>
+    </linearGradient>
+    <!-- ZK circuit glow gradient -->
+    <linearGradient id="zkGlow" x1="0.5" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#e8d5a3" stop-opacity="0"/>
+      <stop offset="40%" stop-color="#e8d5a3" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#e8d5a3" stop-opacity="0.25"/>
+    </linearGradient>
+    <!-- Transformation boundary gradient -->
+    <linearGradient id="boundary" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#c4601a" stop-opacity="0"/>
+      <stop offset="30%" stop-color="#c4601a" stop-opacity="0.6"/>
+      <stop offset="50%" stop-color="#e8d5a3" stop-opacity="0.8"/>
+      <stop offset="70%" stop-color="#c4601a" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#c4601a" stop-opacity="0"/>
+    </linearGradient>
   </defs>
 
   <!-- Background -->
   <rect x="0" y="0" width="800" height="450" fill="#0f0e0c"/>
   <rect x="0" y="0" width="800" height="450" fill="url(#warmth1)"/>
 
-  <!-- Circuit board traces - horizontal lines -->
-  <g opacity="0.2" stroke="#e8d5a3" stroke-width="1" fill="none">
-    <line x1="50" y1="120" x2="200" y2="120"/>
-    <line x1="200" y1="120" x2="220" y2="140"/>
-    <line x1="220" y1="140" x2="350" y2="140"/>
-    <line x1="600" y1="100" x2="720" y2="100"/>
-    <line x1="580" y1="100" x2="600" y2="100"/>
-    <line x1="50" y1="320" x2="150" y2="320"/>
-    <line x1="150" y1="320" x2="170" y2="300"/>
-    <line x1="170" y1="300" x2="280" y2="300"/>
-    <line x1="550" y1="350" x2="700" y2="350"/>
-    <line x1="700" y1="350" x2="720" y2="330"/>
-    <line x1="720" y1="330" x2="760" y2="330"/>
-    <line x1="80" y1="200" x2="120" y2="200"/>
-    <line x1="120" y1="200" x2="140" y2="180"/>
-    <line x1="650" y1="200" x2="750" y2="200"/>
+  <!-- ═══ LEFT SIDE: OLD EVM — fading, fragmenting ═══ -->
+
+  <!-- EVM stack machine boxes — dissolving -->
+  <g opacity="0.14" fill="none" stroke="#c8c3b8">
+    <!-- Stack frames -->
+    <rect x="60" y="80" width="120" height="28" rx="1" stroke-width="0.8" stroke-dasharray="3 2"/>
+    <rect x="60" y="112" width="120" height="28" rx="1" stroke-width="0.7" stroke-dasharray="4 3"/>
+    <rect x="60" y="144" width="120" height="28" rx="1" stroke-width="0.6" stroke-dasharray="5 4"/>
+    <rect x="60" y="176" width="120" height="28" rx="1" stroke-width="0.5" stroke-dasharray="6 5"/>
+    <rect x="60" y="208" width="120" height="28" rx="1" stroke-width="0.4" stroke-dasharray="7 6"/>
   </g>
 
-  <!-- Circuit board traces - vertical lines -->
-  <g opacity="0.15" stroke="#c8c3b8" stroke-width="0.8" fill="none">
-    <line x1="200" y1="50" x2="200" y2="120"/>
-    <line x1="600" y1="50" x2="600" y2="100"/>
-    <line x1="150" y1="320" x2="150" y2="400"/>
-    <line x1="700" y1="250" x2="700" y2="350"/>
-    <line x1="350" y1="140" x2="350" y2="180"/>
+  <!-- EVM opcode labels — fading out -->
+  <g fill="#c8c3b8" font-family="'Courier New', monospace" font-size="9">
+    <text x="75" y="99" opacity="0.18">PUSH1 0x60</text>
+    <text x="75" y="131" opacity="0.14">SSTORE</text>
+    <text x="75" y="163" opacity="0.11">KECCAK256</text>
+    <text x="75" y="195" opacity="0.08">DELEGATECALL</text>
+    <text x="75" y="227" opacity="0.05">SELFDESTRUCT</text>
   </g>
 
-  <!-- Circuit nodes/solder points -->
-  <g fill="#e8d5a3" opacity="0.35">
-    <circle cx="200" cy="120" r="3"/>
-    <circle cx="350" cy="140" r="3"/>
-    <circle cx="600" cy="100" r="3"/>
-    <circle cx="150" cy="320" r="3"/>
-    <circle cx="700" cy="350" r="3"/>
-    <circle cx="280" cy="300" r="2.5"/>
-    <circle cx="120" cy="200" r="2.5"/>
+  <!-- Dissolving particles from EVM side -->
+  <g fill="#c8c3b8">
+    <circle cx="195" cy="95" r="1.5" opacity="0.15"/>
+    <circle cx="205" cy="110" r="1" opacity="0.12"/>
+    <circle cx="210" cy="135" r="1.8" opacity="0.09"/>
+    <circle cx="200" cy="155" r="1.2" opacity="0.11"/>
+    <circle cx="215" cy="175" r="1" opacity="0.08"/>
+    <circle cx="208" cy="200" r="1.5" opacity="0.06"/>
+    <circle cx="220" cy="220" r="0.8" opacity="0.05"/>
+    <circle cx="230" cy="100" r="1" opacity="0.1"/>
+    <circle cx="240" cy="145" r="1.3" opacity="0.07"/>
+    <circle cx="235" cy="185" r="0.9" opacity="0.06"/>
   </g>
 
-  <!-- Central ZK proof visualization - concentric rings -->
-  <g transform="translate(400, 225)" filter="url(#glow1)">
-    <!-- Outer ring -->
-    <circle cx="0" cy="0" r="110" fill="none" stroke="#e8d5a3" stroke-width="1" opacity="0.2" stroke-dasharray="8 4"/>
-    <!-- Middle ring -->
-    <circle cx="0" cy="0" r="80" fill="none" stroke="#e8d5a3" stroke-width="1.5" opacity="0.3" stroke-dasharray="5 3"/>
-    <!-- Inner ring -->
-    <circle cx="0" cy="0" r="50" fill="none" stroke="#c4601a" stroke-width="2" opacity="0.5" stroke-dasharray="3 2"/>
-    <!-- Core -->
-    <circle cx="0" cy="0" r="20" fill="#c4601a" opacity="0.15"/>
-    <circle cx="0" cy="0" r="20" fill="none" stroke="#e8d5a3" stroke-width="1.5" opacity="0.6"/>
-
-    <!-- Zero-knowledge "proof" lines connecting rings -->
-    <line x1="0" y1="-20" x2="0" y2="-50" stroke="#e8d5a3" stroke-width="1" opacity="0.4"/>
-    <line x1="17" y1="-10" x2="43" y2="-25" stroke="#e8d5a3" stroke-width="1" opacity="0.4"/>
-    <line x1="17" y1="10" x2="43" y2="25" stroke="#e8d5a3" stroke-width="1" opacity="0.4"/>
-    <line x1="0" y1="20" x2="0" y2="50" stroke="#e8d5a3" stroke-width="1" opacity="0.4"/>
-    <line x1="-17" y1="10" x2="-43" y2="25" stroke="#e8d5a3" stroke-width="1" opacity="0.4"/>
-    <line x1="-17" y1="-10" x2="-43" y2="-25" stroke="#e8d5a3" stroke-width="1" opacity="0.4"/>
-
-    <!-- Proof verification dots on outer ring -->
-    <circle cx="0" cy="-80" r="4" fill="#c4601a" opacity="0.7"/>
-    <circle cx="69" cy="-40" r="4" fill="#e8d5a3" opacity="0.5"/>
-    <circle cx="69" cy="40" r="4" fill="#c4601a" opacity="0.7"/>
-    <circle cx="0" cy="80" r="4" fill="#e8d5a3" opacity="0.5"/>
-    <circle cx="-69" cy="40" r="4" fill="#c4601a" opacity="0.7"/>
-    <circle cx="-69" cy="-40" r="4" fill="#e8d5a3" opacity="0.5"/>
-
-    <!-- Mathematical symbols scattered around -->
-    <text x="-95" y="-75" fill="#e8d5a3" opacity="0.3" font-family="Georgia, serif" font-size="14" font-style="italic">P(x)</text>
-    <text x="70" y="-70" fill="#c8c3b8" opacity="0.25" font-family="Georgia, serif" font-size="12" font-style="italic">V(r)</text>
-    <text x="85" y="85" fill="#e8d5a3" opacity="0.3" font-family="Georgia, serif" font-size="13" font-style="italic">H(s)</text>
-    <text x="-110" y="80" fill="#c8c3b8" opacity="0.25" font-family="Georgia, serif" font-size="11" font-style="italic">F(p,q)</text>
-
-    <!-- ZK lock symbol in center -->
-    <rect x="-8" y="-4" width="16" height="12" rx="2" fill="none" stroke="#e8d5a3" stroke-width="1.5" opacity="0.7"/>
-    <path d="M-4,-4 L-4,-9 A4,4 0 0,1 4,-9 L4,-4" fill="none" stroke="#e8d5a3" stroke-width="1.5" opacity="0.7"/>
-    <circle cx="0" cy="2" r="2" fill="#c4601a" opacity="0.8"/>
+  <!-- Old state trie fragments — breaking apart -->
+  <g opacity="0.1" stroke="#c8c3b8" stroke-width="0.6" fill="none">
+    <line x1="80" y1="280" x2="110" y2="310"/>
+    <line x1="80" y1="280" x2="50" y2="310"/>
+    <line x1="110" y1="310" x2="130" y2="340"/>
+    <line x1="110" y1="310" x2="95" y2="340"/>
+    <line x1="50" y1="310" x2="65" y2="340"/>
+    <line x1="50" y1="310" x2="30" y2="340"/>
+    <circle cx="80" cy="280" r="3" fill="#c8c3b8" opacity="0.15"/>
+    <circle cx="110" cy="310" r="2.5" fill="#c8c3b8" opacity="0.1"/>
+    <circle cx="50" cy="310" r="2.5" fill="#c8c3b8" opacity="0.1"/>
   </g>
 
-  <!-- Binary/hex data streams on sides -->
-  <g fill="#e8d5a3" opacity="0.12" font-family="'Courier New', monospace" font-size="9">
-    <text x="40" y="60">01101001 11010010</text>
-    <text x="40" y="75">10110100 01001011</text>
-    <text x="40" y="90">0xAF3B 0x92C1</text>
-    <text x="620" y="380">11001010 10110001</text>
-    <text x="620" y="395">0xE8D5 0xA300</text>
-    <text x="620" y="410">01010110 11100011</text>
+  <!-- Fading "EVM" watermark -->
+  <text x="100" y="400" fill="#c8c3b8" opacity="0.06" font-family="'Courier New', monospace" font-size="60" font-weight="bold" letter-spacing="8">EVM</text>
+
+  <!-- ═══ CENTER: TRANSFORMATION BOUNDARY ═══ -->
+
+  <!-- Vertical transformation line -->
+  <line x1="370" y1="30" x2="370" y2="420" stroke="url(#boundary)" stroke-width="1.5" opacity="0.6"/>
+
+  <!-- Transformation arrow/flow particles crossing the boundary -->
+  <g filter="url(#softglow)">
+    <circle cx="350" cy="140" r="2" fill="#c4601a" opacity="0.5"/>
+    <circle cx="360" cy="200" r="2.5" fill="#e8d5a3" opacity="0.4"/>
+    <circle cx="355" cy="260" r="2" fill="#c4601a" opacity="0.45"/>
+    <circle cx="365" cy="320" r="1.8" fill="#e8d5a3" opacity="0.35"/>
+    <circle cx="375" cy="170" r="2.2" fill="#c4601a" opacity="0.5"/>
+    <circle cx="380" cy="230" r="2" fill="#e8d5a3" opacity="0.45"/>
+    <circle cx="370" cy="290" r="2.5" fill="#c4601a" opacity="0.4"/>
+    <circle cx="385" cy="110" r="1.5" fill="#e8d5a3" opacity="0.3"/>
+    <circle cx="378" cy="360" r="1.8" fill="#c4601a" opacity="0.35"/>
   </g>
 
-  <!-- Sigma protocol arrows -->
-  <g opacity="0.2" stroke="#c4601a" stroke-width="1.2" fill="none">
-    <path d="M180,160 Q250,140 300,180" marker-end="none"/>
-    <path d="M500,160 Q550,140 620,170" marker-end="none"/>
-    <path d="M180,290 Q250,310 300,270" marker-end="none"/>
-    <path d="M500,290 Q550,310 620,280" marker-end="none"/>
+  <!-- Small arrows crossing the boundary -->
+  <g stroke="#e8d5a3" stroke-width="1" opacity="0.2" fill="none">
+    <path d="M330,130 L390,130" stroke-dasharray="3 3"/>
+    <path d="M320,190 L400,190" stroke-dasharray="3 3"/>
+    <path d="M335,250 L395,250" stroke-dasharray="3 3"/>
+    <path d="M325,310 L405,310" stroke-dasharray="3 3"/>
+    <path d="M340,370 L390,370" stroke-dasharray="3 3"/>
   </g>
 
-  <!-- Greek/math symbols scattered -->
-  <g fill="#c8c3b8" opacity="0.18" font-family="Georgia, serif" font-style="italic">
-    <text x="100" y="155" font-size="18">&Sigma;</text>
-    <text x="680" y="155" font-size="16">&pi;</text>
-    <text x="90" y="280" font-size="15">&lambda;</text>
-    <text x="690" y="290" font-size="17">&delta;</text>
-    <text x="300" y="70" font-size="14">&forall;</text>
-    <text x="500" y="400" font-size="14">&exist;</text>
+  <!-- ═══ RIGHT SIDE: zkVM — clean, luminous, structured ═══ -->
+
+  <!-- ZK proof circuit — R1CS-style constraint grid -->
+  <g filter="url(#glow1)">
+    <!-- Main circuit nodes -->
+    <circle cx="500" cy="120" r="5" fill="#c4601a" opacity="0.25"/>
+    <circle cx="500" cy="120" r="5" fill="none" stroke="#e8d5a3" stroke-width="1.2" opacity="0.6"/>
+
+    <circle cx="600" cy="80" r="4" fill="#c4601a" opacity="0.2"/>
+    <circle cx="600" cy="80" r="4" fill="none" stroke="#e8d5a3" stroke-width="1" opacity="0.5"/>
+
+    <circle cx="700" cy="120" r="5" fill="#c4601a" opacity="0.25"/>
+    <circle cx="700" cy="120" r="5" fill="none" stroke="#e8d5a3" stroke-width="1.2" opacity="0.6"/>
+
+    <circle cx="550" cy="200" r="6" fill="#c4601a" opacity="0.3"/>
+    <circle cx="550" cy="200" r="6" fill="none" stroke="#e8d5a3" stroke-width="1.5" opacity="0.7"/>
+
+    <circle cx="650" cy="200" r="6" fill="#c4601a" opacity="0.3"/>
+    <circle cx="650" cy="200" r="6" fill="none" stroke="#e8d5a3" stroke-width="1.5" opacity="0.7"/>
+
+    <circle cx="500" cy="290" r="5" fill="#c4601a" opacity="0.25"/>
+    <circle cx="500" cy="290" r="5" fill="none" stroke="#e8d5a3" stroke-width="1.2" opacity="0.6"/>
+
+    <circle cx="600" cy="320" r="4" fill="#c4601a" opacity="0.2"/>
+    <circle cx="600" cy="320" r="4" fill="none" stroke="#e8d5a3" stroke-width="1" opacity="0.5"/>
+
+    <circle cx="700" cy="290" r="5" fill="#c4601a" opacity="0.25"/>
+    <circle cx="700" cy="290" r="5" fill="none" stroke="#e8d5a3" stroke-width="1.2" opacity="0.6"/>
+
+    <!-- Central verification node — larger, brighter -->
+    <circle cx="600" cy="200" r="12" fill="#c4601a" opacity="0.12"/>
+    <circle cx="600" cy="200" r="12" fill="none" stroke="#e8d5a3" stroke-width="2" opacity="0.5"/>
+    <circle cx="600" cy="200" r="6" fill="#e8d5a3" opacity="0.15"/>
+
+    <!-- Circuit wires connecting nodes -->
+    <line x1="505" y1="120" x2="595" y2="80" stroke="#e8d5a3" stroke-width="0.8" opacity="0.35"/>
+    <line x1="605" y1="80" x2="695" y2="120" stroke="#e8d5a3" stroke-width="0.8" opacity="0.35"/>
+    <line x1="500" y1="125" x2="545" y2="195" stroke="#e8d5a3" stroke-width="0.8" opacity="0.35"/>
+    <line x1="700" y1="125" x2="655" y2="195" stroke="#e8d5a3" stroke-width="0.8" opacity="0.35"/>
+    <line x1="555" y1="200" x2="588" y2="200" stroke="#e8d5a3" stroke-width="1" opacity="0.5"/>
+    <line x1="612" y1="200" x2="644" y2="200" stroke="#e8d5a3" stroke-width="1" opacity="0.5"/>
+    <line x1="545" y1="205" x2="505" y2="285" stroke="#e8d5a3" stroke-width="0.8" opacity="0.35"/>
+    <line x1="655" y1="205" x2="695" y2="285" stroke="#e8d5a3" stroke-width="0.8" opacity="0.35"/>
+    <line x1="505" y1="290" x2="595" y2="320" stroke="#e8d5a3" stroke-width="0.8" opacity="0.35"/>
+    <line x1="605" y1="320" x2="695" y2="290" stroke="#e8d5a3" stroke-width="0.8" opacity="0.35"/>
+    <line x1="600" y1="88" x2="600" y2="188" stroke="#c4601a" stroke-width="1" opacity="0.3"/>
+    <line x1="600" y1="212" x2="600" y2="316" stroke="#c4601a" stroke-width="1" opacity="0.3"/>
   </g>
+
+  <!-- ZK proof verification checkmark in center node -->
+  <g transform="translate(600, 200)" opacity="0.6">
+    <path d="M-4,0 L-1,3 L4,-3" fill="none" stroke="#e8d5a3" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+
+  <!-- Proof constraint labels near circuit nodes -->
+  <g fill="#e8d5a3" font-family="Georgia, serif" font-size="10" font-style="italic">
+    <text x="475" y="110" opacity="0.25">w</text>
+    <text x="595" y="68" opacity="0.2">x</text>
+    <text x="712" y="110" opacity="0.25">y</text>
+    <text x="530" y="215" opacity="0.2">A</text>
+    <text x="665" y="215" opacity="0.2">B</text>
+    <text x="475" y="300" opacity="0.2">C</text>
+    <text x="712" y="300" opacity="0.2">z</text>
+  </g>
+
+  <!-- R1CS equation hint -->
+  <g opacity="0.15" font-family="Georgia, serif" font-style="italic" fill="#e8d5a3">
+    <text x="545" y="395" font-size="13">A</text>
+    <text x="560" y="395" font-size="11" fill="#c8c3b8" opacity="0.8"> * </text>
+    <text x="575" y="395" font-size="13">B</text>
+    <text x="590" y="395" font-size="11" fill="#c8c3b8" opacity="0.8"> = </text>
+    <text x="605" y="395" font-size="13">C</text>
+  </g>
+
+  <!-- RISC-V instruction hints floating near ZK side -->
+  <g fill="#e8d5a3" font-family="'Courier New', monospace" font-size="8" opacity="0.1">
+    <text x="440" y="55">addi x1, x0, 42</text>
+    <text x="650" y="400">mul x3, x1, x2</text>
+    <text x="430" y="420">sw x3, 0(x4)</text>
+  </g>
+
+  <!-- Proving time indicator -->
+  <g transform="translate(720, 380)" opacity="0.15">
+    <text fill="#e8d5a3" font-family="'Courier New', monospace" font-size="8">&lt;100x</text>
+    <text fill="#c8c3b8" font-family="'Courier New', monospace" font-size="7" y="12">overhead</text>
+  </g>
+
+  <!-- Large background "ZK" watermark on right -->
+  <text x="520" y="310" fill="#e8d5a3" opacity="0.035" font-family="'Courier New', monospace" font-size="200" font-weight="bold" letter-spacing="-5">ZK</text>
 
   <!-- Film grain overlays -->
   <rect x="0" y="0" width="800" height="450" fill="url(#grain1)"/>
   <rect x="0" y="0" width="800" height="450" fill="url(#grain1b)"/>
 
-  <!-- Vignette effect -->
+  <!-- Vignette -->
   <rect x="0" y="0" width="800" height="450" fill="url(#vignette1)"/>
 
-  <!-- Retro date stamp -->
+  <!-- Date stamp -->
   <g transform="translate(680, 425)">
     <text fill="#c4601a" opacity="0.5" font-family="'Courier New', monospace" font-size="11" font-weight="bold">26  03  05</text>
   </g>
 
-  <!-- Film frame number -->
+  <!-- Frame number -->
   <g transform="translate(24, 28)">
     <text fill="#e8d5a3" opacity="0.25" font-family="'Courier New', monospace" font-size="10">No. 01</text>
   </g>
